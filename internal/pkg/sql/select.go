@@ -44,9 +44,9 @@ type SelectInfo struct {
 }
 
 type ColumnFilter struct {
-	Column    string `json:"column"`
-	Operation string `json:"operation"`
-	Value     string `json:"value"`
+	Column    string      `json:"column"`
+	Operation string      `json:"operation"`
+	Value     interface{} `json:"value"`
 }
 
 type FieldOp func(f interface{}) string
@@ -56,9 +56,10 @@ type FilterFormat struct {
 	FormatValueFunc func(interface{}) string
 }
 
-type AddCriteraiConfig struct {
-	TableAlias       *string
-	FieldTagsExclude []string
+type AddCriteriaConfig struct {
+	TableAlias                      *string
+	FieldTagsExclude                []string
+	fieldOverrideColumnOperatorsMap map[uintptr]string
 }
 
 type ColumnFilterConfig struct {
@@ -95,6 +96,8 @@ var (
 	columnTypeMap          = map[string]FilterFormat{
 		fmt.Sprintf("%T", time.Time{}): {Format: "timestamp '%v'", FormatValueFunc: timestampAwsFormatFunc},
 	}
+
+	TableMap = map[string]string{}
 )
 
 func (cf *ColumnFilter) Validate(model interface{}) (string, string, error) {
@@ -103,14 +106,14 @@ func (cf *ColumnFilter) Validate(model interface{}) (string, string, error) {
 	}
 	modelColumns := util.GetTags(model, "json")
 	if !util.Contains(modelColumns, cf.Column, strings.Compare) {
-		return "", "", fmt.Errof("column '%s' is not found in model '%T'", cf.Column, model)
+		return "", "", fmt.Errorf("column '%s' is not found in model '%T'", cf.Column, model)
 	}
 	if _, ok := columnFilterOperationMap[cf.Operation]; !ok {
 		return "", "", errors.New("operation not found")
 	}
 	table, ok := TableMap[fmt.Sprintf("%T", model)]
 	if !ok {
-		return "", "", fmt.Errof("failed to find table name for type '%T'", model)
+		return "", "", fmt.Errorf("failed to find table name for type '%T'", model)
 	}
 	joinTable, modelFieldType := util.GetFieldAndJoinTableByTag(model, "json", cf.Column)
 	if len(joinTable) > 0 {
@@ -162,6 +165,13 @@ func GetFormatedValue(cf ColumnFilter, fieldType string, formatColumnFilter Filt
 	return value
 }
 
+func (s *SelectInfo) AddWhereClauseCustom(whereClauseFmt string, args ...interface{}) {
+	if len(whereClauseFmt) > 0 {
+		whereClause := fmt.Sprintf(whereClauseFmt, args...)
+		s.WhereClause = append(s.WhereClause, whereClause)
+	}
+}
+
 func (s *SelectInfo) AddWhereClauseFromColumnFilter(cf ColumnFilter, config *ColumnFilterConfig) {
 	table, fieldType, err := cf.Validate(s.TableModel)
 	if err != nil {
@@ -181,8 +191,8 @@ func (s *SelectInfo) AddWhereClauseFromColumnFilter(cf ColumnFilter, config *Col
 		return
 	} else if len(nilFormat) < 1 {
 		formatColumnFilter := columnFilterOperationMap[cf.Operation]
-		value := GetFormatedValue(cf, fieldType, formatColumFilter)
-		s.AddWhereClauseCustom(formatColumFilter.Format, column, value)
+		value := GetFormatedValue(cf, fieldType, formatColumnFilter)
+		s.AddWhereClauseCustom(formatColumnFilter.Format, column, value)
 	} else {
 		s.AddWhereClauseCustom(nilFormat, column)
 	}
@@ -209,34 +219,69 @@ func getTypeOperation(typeStr string) string {
 	}
 }
 
+func (s *SelectInfo) AddCriteriaFieldOperatorOverride(cfg *AddCriteriaConfig, operation string, fields ...interface{}) {
+	if cfg == nil {
+		s.Err = errors.Join(s.Err, errors.New("add criteria config cannot be nil"))
+		return
+	}
+	mv := reflect.ValueOf(s.CriteriaModel)
+	if mv.Kind() != reflect.Pointer {
+		s.Err = errors.Join(s.Err, errors.New("selectioninfo criteria model must be pointer"))
+		return
+	}
+	if cfg.fieldOverrideColumnOperatorsMap == nil {
+		cfg.fieldOverrideColumnOperatorsMap = map[uintptr]string{}
+	}
+	for _, field := range fields {
+		fv := reflect.ValueOf(field)
+		if fv.Kind() != reflect.Pointer {
+			continue // err?
+		}
+		fieldOffset := fv.Pointer() - mv.Pointer()
+		cfg.fieldOverrideColumnOperatorsMap[fieldOffset] = operation
+	}
+}
+
 func (s *SelectInfo) AddCriteria(config ...AddCriteriaConfig) {
-	cfg := AddCriteria{}
+	cfg := AddCriteriaConfig{}
 	if len(config) > 0 {
 		cfg = config[0]
 	}
 	cmv := reflect.ValueOf(s.CriteriaModel).Elem()
+	cmvp := reflect.ValueOf(s.CriteriaModel).Pointer()
 	cfs := []ColumnFilter{}
-	len := cmv.NumFields()
-	for i := 0; i < len; i++ {
+	numFields := cmv.NumField()
+	for i := 0; i < numFields; i++ {
 		f := cmv.Field(i)
+		if f.Type().Kind() == reflect.Pointer && f.IsNil() {
+			continue
+		}
 		fTag, fTagAndOptions := "", cmv.Type().Field(i).Tag.Get("json")
 		if len(fTagAndOptions) > 0 {
 			fTag = strings.Split(fTagAndOptions, ",")[0]
 		}
-		if util.Contains(criteriaFields, fTag, strings.Compare) {
-			continue
+		operation, useOverrideOp, canOverride := "", false, f.CanAddr()
+		var fieldOffset uintptr
+		if canOverride {
+			fieldOffset = f.Addr().Pointer() - cmvp
 		}
-		if util.Contains(cfg.FieldTagsExclude, fTag, strings.Compare) {
-			continue
-		}
-		if f.Type().Kind() == reflect.Pointer() {
-			if f.IsNil() {
+		if operation, useOverrideOp = cfg.fieldOverrideColumnOperatorsMap[fieldOffset]; useOverrideOp && canOverride {
+			// overriding operation for field
+		} else {
+			if util.Contains(criteriaFields, fTag, strings.Compare) {
 				continue
 			}
+			if util.Contains(cfg.FieldTagsExclude, fTag, strings.Compare) {
+				continue
+			}
+		}
+		if f.Type().Kind() == reflect.Pointer {
 			f = f.Elem()
 		}
 		if f.CanInterface() {
-			operation := getTypeOperation(f.Type().String())
+			if !useOverrideOp {
+				operation = getTypeOperation(f.Type().String())
+			}
 			// can add field specific operator overrides here
 			cf := ColumnFilter{Column: fTag, Operation: operation, Value: f.Interface()}
 			cfs = append(cfs, cf)
