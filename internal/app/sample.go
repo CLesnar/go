@@ -1,0 +1,5 @@
+package internalsampleapp
+
+func Main() {
+
+}
