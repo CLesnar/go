@@ -37,12 +37,12 @@ type HttpI interface {
 type Http struct {
 }
 
-func ModelMap(model interface{}) (map[string]string, error) {
+func ModelMap(model interface{}) (map[string]interface{}, error) {
 	modelJson, err := json.Marshal(model)
 	if err != nil {
 		return nil, err
 	}
-	modelMap := map[string]string{}
+	modelMap := map[string]interface{}{}
 	if err := json.Unmarshal(modelJson, &modelMap); err != nil {
 		return nil, err
 	}
@@ -87,7 +87,7 @@ func (h *Http) GetRequest(ctx context.Context, url string, criteria interface{},
 	if err := AddQueryParams(parameters, q); err != nil {
 		return nil, fmt.Errorf("failed to add path parameters: %v", err)
 	}
-	req.URL.RawQuery = req.URL.Query().Encode()
+	req.URL.RawQuery = q.Encode()
 	resp, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("faile to do request: %v", err)

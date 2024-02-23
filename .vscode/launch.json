@@ -8,14 +8,17 @@
             "name": "weatherApp",
             "type": "go",
             "request": "launch",
-            "mode": "auto",
+            // "mode": "auto",
+            "mode": "debug",
             // "program": "${fileDirname}",
             "program": "${workspaceFolder}/cmd/weatherWebApp/",
             "envFile":"${workspaceFolder}/.devcontainer/.env",
             "env":{
                 // set key value environment vars here
                 "DEVENV":"ON",
-            }
+            }, 
+            "args": [],
+            "showLog":true,
         }
     ]
 }

@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"sync"
 	"time"
 
 	environment "github.com/CLesnar/go/internal/pkg/enviornment"
@@ -47,9 +48,13 @@ func Serve(ctx context.Context, s Scope, errChan chan<- error) {
 		WriteTimeout: timeoutDuration,
 		ReadTimeout:  timeoutDuration,
 	}
+	wg := sync.WaitGroup{}
+	wg.Add(1)
 	go func() {
+		defer wg.Done()
 		errChan <- httpServe.ListenAndServe()
 	}()
+	wg.Wait()
 }
 
 func NewRouter() *mux.Router {
