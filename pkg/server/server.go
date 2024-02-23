@@ -43,7 +43,7 @@ func Serve(ctx context.Context, s Scope, errChan chan<- error) {
 	}
 	httpServe := &http.Server{
 		Handler:      corshandler,
-		Addr:         port,
+		Addr:         ":" + port,
 		WriteTimeout: timeoutDuration,
 		ReadTimeout:  timeoutDuration,
 	}

@@ -8,7 +8,7 @@ import (
 	"github.com/CLesnar/go/pkg/weather"
 )
 
-func Main() {
+func main() {
 	ctx := context.Background()
 	fmt.Printf("version: %v\n", weather.Version()) // TODO replace with struct logger
 	s := WeatherWebAppScope{}
