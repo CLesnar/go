@@ -22,11 +22,14 @@ func (c *WeatherWebAppController) Router(r *mux.Router) {
 }
 
 func (c *WeatherWebAppController) GetWeatherDataHandler(w http.ResponseWriter, r *http.Request) {
-
+	ctx := r.Context()
 	openWeatherMap := weather.OpenWeatherMap{}
+
 	resp, err := openWeatherMap.GetCurrentWeatherData(ctx, criteria, parameters)
 	if err != nil {
-		fmt.Printf("error: %v", err)
+		w.WriteHeader(http.StatusInternalServerError)
+		_, _ = w.Write([]byte(fmt.Sprintf("error: %v", err)))
+		return
 	}
-	data, ok := resp.(OpenWeatherMapGetCurrentDataResponse)
+	data, ok := resp.(OpenWeatherMaResponsepGetCurrentData)
 }

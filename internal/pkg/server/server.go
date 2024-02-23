@@ -11,5 +11,6 @@ const (
 )
 
 func Serve(ctx context.Context, scopes []ScopeRouter, errChan chan<- error) {
-	mux.NewRoute()
+	r := mux.NewRouter()
+	// r.Use(various built-in middleware)
 }

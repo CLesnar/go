@@ -35,7 +35,7 @@ type OpenWeatherMapParametersGetCurrentDat struct {
 	Language  *string `json:"lang,omitempty"`  // You can use this parameter to get the output in your language.
 }
 
-type OpenWeatherMapGetCurrentDataResponse struct {
+type OpenWeatherMaResponsepGetCurrentData struct {
 	Coordinates struct {
 		Longitude int64 `json:"lon"` // Longitude of the location
 		Latitude  int64 `json:"lat"` // Latitude of the location
@@ -95,7 +95,7 @@ func (w *OpenWeatherMap) GetCurrentWeatherData(ctx context.Context, criteria int
 	if err != nil {
 		return nil, err
 	}
-	openWeatherResponse := OpenWeatherMapGetCurrentDataResponse{}
+	openWeatherResponse := OpenWeatherMaResponsepGetCurrentData{}
 	if err := json.Unmarshal(resp, &openWeatherResponse); err != nil {
 		return nil, err
 	}
