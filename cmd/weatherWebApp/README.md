@@ -14,6 +14,7 @@ You can put the API Key in the path parameters directly.
 ## Run weatherWebApp
 Checkout the git repo clesnar/go and rely on the .vscode config - run debug. Or build and run executable.
 The default `host:port` is `localhost:8111`.
+Once weatherWebApp is running, then in a browser, navigate to http://localhost:8111/v1/weather/data?lat=45.271718&lon=-93.655206&appid=<apikey> and don't forget your api key.
 
 ## debug build
 go build -buildvcs=false -o /workspaces/clesnar-go/cmd/weatherWebApp/__debug_bin1800304272 -gcflags all=-N
