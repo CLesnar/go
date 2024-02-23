@@ -31,6 +31,14 @@ func cacheStructFieldTag(model interface{}, field interface{}, tagsKey string, t
 	}
 }
 
+func FindFieldTagWithDefault(model interface{}, field interface{}, tagsKey string, defaultTag string) string {
+	tag, err := FindFieldTag(model, field, tagsKey)
+	if err != nil {
+		return defaultTag
+	}
+	return tag
+}
+
 func FindFieldTag(model interface{}, field interface{}, tagsKey string) (string, error) {
 	if tag, ok := lookupStructFieldTag(model, field, tagsKey); ok {
 		return tag, nil
