@@ -87,3 +87,54 @@ func GetTagsByOption(model interface{}, tagsReturnKey string, tagsFindKey string
 func GetTags(model interface{}, tagsKey string) []string {
 	return GetTagsByOption(model, tagsKey, "", "", "", "")
 }
+
+func ConstantRef[T any](v T) *T {
+	return &v
+}
+
+func PrepareFilterText(s string) string {
+	str := strings.ReplaceAll(s, "'", "''")
+	return str
+}
+
+func StringifyUnknown(value interface{}, typeValueFormatOverrideFunc func(interface{}) string) string {
+	if value == nil {
+		if typeValueFormatOverrideFunc != nil {
+			return typeValueFormatOverrideFunc(value)
+		}
+		return fmt.Sprintf("%v", value)
+	}
+	v := reflect.ValueOf(value)
+	if v.Type().Kind() == reflect.Slice || v.Type().Kind() == reflect.Array {
+		length, values := v.Len(), ""
+		for i := 0; i < length; i++ {
+			vi := v.Index(i)
+			if vi.Kind() == reflect.Interface || vi.Kind() == reflect.Pointer {
+				vi = vi.Elem()
+			}
+			isString := vi.Kind() == reflect.String
+			elemI := v.Index(i).Interface()
+			elem := fmt.Sprintf("%v", elemI)
+			if elemI == nil {
+				continue
+			} else if typeValueFormatOverrideFunc != nil {
+				elem = typeValueFormatOverrideFunc(elemI)
+			} else if isString {
+				elem = "'" + PrepareFilterText(elem) + "'"
+			}
+			values = values + "," + elem
+		}
+		return values[1:]
+	} else {
+		var elem string
+		if typeValueFormatOverrideFunc != nil {
+			elem = typeValueFormatOverrideFunc(value)
+		} else {
+			elem = fmt.Sprintf("%v", value)
+			if v.Kind() == reflect.String {
+				elem = "'" + PrepareFilterText(elem) + "'"
+			}
+		}
+		return elem
+	}
+}

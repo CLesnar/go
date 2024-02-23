@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"go/internal/util"
+	"github.com/CLesnar/go/internal/pkg/util"
 )
 
 type Params interface {
@@ -115,7 +115,7 @@ func (cf *ColumnFilter) Validate(model interface{}) (string, string, error) {
 	if !ok {
 		return "", "", fmt.Errorf("failed to find table name for type '%T'", model)
 	}
-	joinTable, modelFieldType := util.GetFieldAndJoinTableByTag(model, "json", cf.Column)
+	joinTable, modelFieldType := "", "" // TODO util.GetFieldAndJoinTableByTag(model, "json", cf.Column)
 	if len(joinTable) > 0 {
 		table = joinTable
 	}
@@ -133,7 +133,7 @@ func (cf *ColumnFilter) Validate(model interface{}) (string, string, error) {
 }
 
 func (cf ColumnFilter) SliceExpected() bool {
-	return util.Contians([]string{"in", "nin"}, cf.Operation, strings.Compare)
+	return util.Contains([]string{"in", "nin"}, cf.Operation, strings.Compare)
 }
 
 func (cf ColumnFilter) GetIsNilAllowedAndFormat() (string, error) {
