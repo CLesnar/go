@@ -21,3 +21,5 @@
 go.work
 
 /vendor/
+
+/node_modules/

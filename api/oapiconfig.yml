@@ -1,0 +1,8 @@
+package: model
+generate:
+  models: true
+output: ../pkg/model/model.gen.go
+output-options:
+  skip-prune: true
+  exclude-schemas:
+  

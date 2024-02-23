@@ -11,6 +11,8 @@ import (
 	"net/http"
 	"net/url"
 	"time"
+
+	"github.com/gorilla/schema"
 )
 
 var (
@@ -99,4 +101,30 @@ func (h *Http) GetRequest(ctx context.Context, url string, criteria interface{},
 		return respBody, fmt.Errorf("response status not okay '200', recieved '%v'", resp.StatusCode)
 	}
 	return respBody, nil
+}
+
+func DecodeRequestBody(r *http.Request, obj interface{}) error {
+	if err := json.NewDecoder(r.Body).Decode(&obj); err != nil {
+		if typeErr, ok := err.(*json.UnmarshalTypeError); ok {
+			return fmt.Errorf("%v must have type %v", typeErr.Field, typeErr.Type)
+		}
+		return err
+	}
+	return nil
+}
+
+func DecodeQueryString(r *http.Request, obj interface{}) error {
+	q := r.URL.Query()
+	if len(q) < 1 {
+		return nil
+	}
+	decoder := schema.NewDecoder()
+	decoder.IgnoreUnknownKeys(true)
+	decoder.SetAliasTag("json")
+	return decoder.Decode(obj, q)
+}
+
+func RespondError(w http.ResponseWriter, statuscode int, err error) {
+	w.Write([]byte(err.Error())) // nolint
+	w.WriteHeader(statuscode)
 }

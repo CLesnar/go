@@ -1,0 +1,25 @@
+openapi: '3.0.2'
+info:
+  title: CLesnar Go Models
+  description: Common Data Models
+  version: 0.1.0
+servers:
+  - url: http:localhost:8111
+security:
+  - BearerAuth: []
+  - ApiKeyAuth: []
+paths:
+  /health/:
+    $ref: ./paths/health.yml
+components:
+  securitySchemas:
+    BearerAuth:
+      type: http
+      scheme: bearer
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+  schemas:
+    Health:
+      $ref: ./schemas/Health.yml
