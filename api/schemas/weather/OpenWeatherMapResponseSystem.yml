@@ -12,27 +12,27 @@ properties:
     type: number
     format: int64
     x-oapi-codegen-extra-tags:
-        json: `json:"type"`   
+      json: "type" 
   Id:
     type: number
     format: int64
     x-oapi-codegen-extra-tags:
-      json: `json:"id"`     
+      json: "id"   
   Message:
     type: string
     x-oapi-codegen-extra-tags:
-      json: `json:"message"`
+      json: "message"
   Country:
     type: string
     x-oapi-codegen-extra-tags:
-      json: `json:"country"`
+      json: "country"
   Sunrise:
     type: number
     format: int64
     x-oapi-codegen-extra-tags:
-      json: `json:"sunrise"`
+      json: "sunrise"
   Sunset:
     type: number
     format: int64
     x-oapi-codegen-extra-tags:
-      json: `json:"sunset"` 
+      json: "sunset"

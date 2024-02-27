@@ -59,6 +59,494 @@
             "default": true
           }
         }
+      },
+      "OpenWeatherMapParametersGetCurrentData": {
+        "description": "Open Weather API Parameters for Get Weather Data",
+        "type": "object",
+        "required": null,
+        "properties": {
+          "Latitude": {
+            "type": "number",
+            "format": "double",
+            "x-oapi-codegen-extra-tags": {
+              "json": "lat"
+            }
+          },
+          "Longitude": {
+            "type": "number",
+            "format": "double",
+            "x-oapi-codegen-extra-tags": {
+              "json": "lat"
+            }
+          },
+          "AppId": {
+            "type": "string",
+            "x-oapi-codegen-extra-tags": {
+              "json": "appid"
+            }
+          },
+          "Mode": {
+            "type": "string",
+            "x-oapi-codegen-extra-tags": {
+              "json": "mode"
+            }
+          },
+          "Units": {
+            "type": "string",
+            "x-oapi-codegen-extra-tags": {
+              "json": "units"
+            }
+          },
+          "Language": {
+            "type": "string",
+            "x-oapi-codegen-extra-tags": {
+              "json": "lang"
+            }
+          }
+        }
+      },
+      "OpenWeatherMapResponse": {
+        "description": "Open Weather API Response to GET Current Data: https://api.openweathermap.org/data/2.5/weather.",
+        "type": "object",
+        "required": [
+          "Coordinates",
+          "Weather",
+          "Base",
+          "Main",
+          "Visibility",
+          "Wind",
+          "Clouds",
+          "System",
+          "TimeData",
+          "Id",
+          "Name",
+          "Cod"
+        ],
+        "properties": {
+          "Coordinates": {
+            "type": {
+              "$ref": "#/components/schemas/OpenWeatherMapResponseCoordinates"
+            },
+            "x-oapi-codegen-extra-tags": {
+              "json": "coord"
+            }
+          },
+          "Weather": {
+            "type": {
+              "$ref": "#/components/schemas/OpenWeatherMapResponseWeather"
+            },
+            "x-oapi-codegen-extra-tags": {
+              "json": "weather"
+            }
+          },
+          "Base": {
+            "type": "string",
+            "x-oapi-codegen-extra-tags": {
+              "json": "base"
+            }
+          },
+          "Main": {
+            "type": {
+              "$ref": "#/components/schemas/OpenWeatherMapResponseMain"
+            },
+            "x-oapi-codegen-extra-tags": {
+              "json": "main"
+            }
+          },
+          "Visibility": {
+            "type": "number",
+            "format": "double",
+            "x-oapi-codegen-extra-tags": {
+              "json": "visibility"
+            }
+          },
+          "Wind": {
+            "type": {
+              "$ref": "#/components/schemas/OpenWeatherMapResponseWind"
+            },
+            "x-oapi-codegen-extra-tags": {
+              "json": "wind"
+            }
+          },
+          "Clouds": {
+            "type": {
+              "$ref": "#/components/schemas/OpenWeatherMapResponseClouds"
+            },
+            "x-oapi-codegen-extra-tags": {
+              "json": "clouds"
+            }
+          },
+          "Rain": {
+            "type": {
+              "$ref": "#/components/schemas/OpenWeatherMapResponseRain"
+            },
+            "x-oapi-codegen-extra-tags": {
+              "json": "rain"
+            }
+          },
+          "Snow": {
+            "type": {
+              "$ref": "#/components/schemas/OpenWeatherMapResponseSnow"
+            },
+            "x-oapi-codegen-extra-tags": {
+              "json": "snow"
+            }
+          },
+          "TimeData": {
+            "type": "number",
+            "format": "double",
+            "x-oapi-codegen-extra-tags": {
+              "json": "dt"
+            }
+          },
+          "System": {
+            "type": {
+              "$ref": "#/components/schemas/OpenWeatherMapResponseSystem"
+            },
+            "x-oapi-codegen-extra-tags": {
+              "json": "sys"
+            }
+          },
+          "TimeZone": {
+            "type": "number",
+            "format": "int64",
+            "x-oapi-codegen-extra-tags": {
+              "json": "timezone"
+            }
+          },
+          "Id": {
+            "type": "number",
+            "format": "int64",
+            "x-oapi-codegen-extra-tags": {
+              "json": "id"
+            }
+          },
+          "Name": {
+            "type": "string",
+            "x-oapi-codegen-extra-tags": {
+              "json": "name"
+            }
+          },
+          "Cod": {
+            "type": "number",
+            "format": "int64",
+            "x-oapi-codegen-extra-tags": {
+              "json": "cod"
+            }
+          }
+        }
+      },
+      "OpenWeatherMapResponseClouds": {
+        "description": "Open Weather API Clouds Data.",
+        "type": "object",
+        "required": [
+          "CloudinessPercent"
+        ],
+        "properties": {
+          "CloudinessPercent": {
+            "type": "number",
+            "format": "double",
+            "x-oapi-codegen-extra-tags": {
+              "json": "all"
+            }
+          }
+        }
+      },
+      "OpenWeatherMapResponseCoordinates": {
+        "description": "Open Weather API Coordinates Data.",
+        "type": "object",
+        "required": [
+          "Latitude",
+          "Longitude"
+        ],
+        "properties": {
+          "Latitude": {
+            "type": "number",
+            "format": "double",
+            "x-oapi-codegen-extra-tags": {
+              "json": "lat"
+            }
+          },
+          "Longitude": {
+            "type": "number",
+            "format": "double",
+            "x-oapi-codegen-extra-tags": {
+              "json": "lon"
+            }
+          }
+        }
+      },
+      "OpenWeatherMapResponseMain": {
+        "description": "Open Weather API Main Data.",
+        "type": "object",
+        "required": [
+          "Temperature",
+          "FeelsLike",
+          "Pressure",
+          "Humidity",
+          "TemperatureMin",
+          "TemperatureMax",
+          "SeaLevel",
+          "GroundLevel"
+        ],
+        "properties": {
+          "Temperature": {
+            "type": "number",
+            "format": "double",
+            "x-oapi-codegen-extra-tags": {
+              "json": "temp"
+            }
+          },
+          "FeelsLike": {
+            "type": "number",
+            "format": "double",
+            "x-oapi-codegen-extra-tags": "json:\"feels_like\""
+          },
+          "Pressure": {
+            "type": "number",
+            "format": "double",
+            "x-oapi-codegen-extra-tags": {
+              "json": "pressure"
+            }
+          },
+          "Humidity": {
+            "type": "number",
+            "format": "double",
+            "x-oapi-codegen-extra-tags": {
+              "json": "humidity"
+            }
+          },
+          "TemperatureMin": {
+            "type": "number",
+            "format": "double",
+            "x-oapi-codegen-extra-tags": {
+              "json": "temp_min"
+            }
+          },
+          "TemperatureMax": {
+            "type": "number",
+            "format": "double",
+            "x-oapi-codegen-extra-tags": {
+              "json": "temp_max"
+            }
+          },
+          "SeaLevel": {
+            "type": "number",
+            "format": "double",
+            "x-oapi-codegen-extra-tags": {
+              "json": "sea_level"
+            }
+          },
+          "GroundLevel": {
+            "type": "number",
+            "format": "double",
+            "x-oapi-codegen-extra-tags": {
+              "json": "grnd_level"
+            }
+          }
+        }
+      },
+      "OpenWeatherMapResponseRain": {
+        "description": "Open Weather API Rain Data.",
+        "type": "object",
+        "required": [
+          "Volume1Hour",
+          "Volume3Hour"
+        ],
+        "properties": {
+          "Volume1Hour": {
+            "type": "number",
+            "format": "double",
+            "x-oapi-codegen-extra-tags": {
+              "json": "1h"
+            }
+          },
+          "Volume3Hour": {
+            "type": "number",
+            "format": "double",
+            "x-oapi-codegen-extra-tags": {
+              "json": "3h"
+            }
+          }
+        }
+      },
+      "OpenWeatherMapResponseSnow": {
+        "description": "Open Weather API Snow Data.",
+        "type": "object",
+        "required": [
+          "Volume1Hour",
+          "Volume3Hour"
+        ],
+        "properties": {
+          "Volume1Hour": {
+            "type": "number",
+            "format": "double",
+            "x-oapi-codegen-extra-tags": {
+              "json": "1h"
+            }
+          },
+          "Volume3Hour": {
+            "type": "number",
+            "format": "double",
+            "x-oapi-codegen-extra-tags": {
+              "json": "3h"
+            }
+          }
+        }
+      },
+      "OpenWeatherMapResponseSystem": {
+        "description": "Open Weather API System Data.",
+        "type": "object",
+        "required": [
+          "Type",
+          "Id",
+          "Message",
+          "Country",
+          "Sunrise",
+          "Sunset"
+        ],
+        "properties": {
+          "Type": {
+            "type": "number",
+            "format": "int64",
+            "x-oapi-codegen-extra-tags": {
+              "json": "type"
+            }
+          },
+          "Id": {
+            "type": "number",
+            "format": "int64",
+            "x-oapi-codegen-extra-tags": {
+              "json": "id"
+            }
+          },
+          "Message": {
+            "type": "string",
+            "x-oapi-codegen-extra-tags": {
+              "json": "message"
+            }
+          },
+          "Country": {
+            "type": "string",
+            "x-oapi-codegen-extra-tags": {
+              "json": "country"
+            }
+          },
+          "Sunrise": {
+            "type": "number",
+            "format": "int64",
+            "x-oapi-codegen-extra-tags": {
+              "json": "sunrise"
+            }
+          },
+          "Sunset": {
+            "type": "number",
+            "format": "int64",
+            "x-oapi-codegen-extra-tags": {
+              "json": "sunset"
+            }
+          }
+        }
+      },
+      "OpenWeatherMapResponseWeather": {
+        "description": "Open Weather API Weather Data.",
+        "type": "object",
+        "required": [
+          "Id",
+          "Main",
+          "Description",
+          "Icon"
+        ],
+        "properties": {
+          "Main": {
+            "type": "string",
+            "x-oapi-codegen-extra-tags": {
+              "json": "main"
+            }
+          },
+          "Description": {
+            "type": "string",
+            "x-oapi-codegen-extra-tags": {
+              "json": "description"
+            }
+          },
+          "Icon": {
+            "type": "string",
+            "x-oapi-codegen-extra-tags": {
+              "json": "icon"
+            }
+          },
+          "Id": {
+            "type": "number",
+            "format": "int64",
+            "x-oapi-codegen-extra-tags": {
+              "json": "id"
+            }
+          }
+        }
+      },
+      "OpenWeatherMapResponseWind": {
+        "description": "Open Weather API Wind Data.",
+        "type": "object",
+        "required": [
+          "Speed",
+          "WindDirectionDegrees",
+          "Gust"
+        ],
+        "properties": {
+          "Speed": {
+            "type": "number",
+            "format": "double",
+            "x-oapi-codegen-extra-tags": {
+              "json": "speed"
+            }
+          },
+          "WindDirectionDegrees": {
+            "type": "number",
+            "format": "double",
+            "x-oapi-codegen-extra-tags": {
+              "json": "deg"
+            }
+          },
+          "Gust": {
+            "type": "number",
+            "format": "double",
+            "x-oapi-codegen-extra-tags": {
+              "json": "gust"
+            }
+          }
+        }
+      },
+      "WeatherConditionGetParameters": {
+        "description": "Weather Web App Parameters for Get Weather Data",
+        "type": "object",
+        "required": [
+          "Latitude",
+          "Longitude",
+          "AppId"
+        ],
+        "properties": {
+          "Latitude": {
+            "type": "number",
+            "format": "double",
+            "x-oapi-codegen-extra-tags": {
+              "json": "lat"
+            }
+          },
+          "Longitude": {
+            "type": "number",
+            "format": "double",
+            "x-oapi-codegen-extra-tags": {
+              "json": "lat"
+            }
+          },
+          "AppId": {
+            "type": "string",
+            "x-oapi-codegen-extra-tags": {
+              "json": "appid"
+            }
+          }
+        }
       }
     }
   }

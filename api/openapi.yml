@@ -23,3 +23,25 @@ components:
   schemas:
     Health:
       $ref: ./schemas/Health.yml
+    OpenWeatherMapParametersGetCurrentData: 
+      $ref: ./schemas/weather/OpenWeatherMapParametersGetCurrentData.yml
+    OpenWeatherMapResponse: 
+      $ref: ./schemas/weather/OpenWeatherMapResponse.yml
+    OpenWeatherMapResponseClouds: 
+      $ref: ./schemas/weather/OpenWeatherMapResponseClouds.yml
+    OpenWeatherMapResponseCoordinates: 
+      $ref: ./schemas/weather/OpenWeatherMapResponseCoordinates.yml
+    OpenWeatherMapResponseMain: 
+      $ref: ./schemas/weather/OpenWeatherMapResponseMain.yml
+    OpenWeatherMapResponseRain: 
+      $ref: ./schemas/weather/OpenWeatherMapResponseRain.yml
+    OpenWeatherMapResponseSnow: 
+      $ref: ./schemas/weather/OpenWeatherMapResponseSnow.yml
+    OpenWeatherMapResponseSystem: 
+      $ref: ./schemas/weather/OpenWeatherMapResponseSystem.yml
+    OpenWeatherMapResponseWeather: 
+      $ref: ./schemas/weather/OpenWeatherMapResponseWeather.yml
+    OpenWeatherMapResponseWind: 
+      $ref: ./schemas/weather/OpenWeatherMapResponseWind.yml
+    WeatherConditionGetParameters: 
+      $ref: ./schemas/weather/WeatherConditionGetParameters.yml
