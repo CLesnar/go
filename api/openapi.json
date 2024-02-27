@@ -19,7 +19,7 @@
     }
   ],
   "paths": {
-    "/health/": {
+    "/health": {
       "get": {
         "description": "Very simple Health Check",
         "responses": {
@@ -29,6 +29,22 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/Health"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/weather/data": {
+      "get": {
+        "description": "Get the weather condition.",
+        "responses": {
+          "200": null,
+          "description": "Successful operation",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WeatherConditionGetResponse"
               }
             }
           }
@@ -124,17 +140,13 @@
         ],
         "properties": {
           "Coordinates": {
-            "type": {
-              "$ref": "#/components/schemas/OpenWeatherMapResponseCoordinates"
-            },
+            "$ref": "#/components/schemas/OpenWeatherMapResponseCoordinates",
             "x-oapi-codegen-extra-tags": {
               "json": "coord"
             }
           },
           "Weather": {
-            "type": {
-              "$ref": "#/components/schemas/OpenWeatherMapResponseWeather"
-            },
+            "$ref": "#/components/schemas/OpenWeatherMapResponseWeather",
             "x-oapi-codegen-extra-tags": {
               "json": "weather"
             }
@@ -146,9 +158,7 @@
             }
           },
           "Main": {
-            "type": {
-              "$ref": "#/components/schemas/OpenWeatherMapResponseMain"
-            },
+            "$ref": "#/components/schemas/OpenWeatherMapResponseMain",
             "x-oapi-codegen-extra-tags": {
               "json": "main"
             }
@@ -161,33 +171,25 @@
             }
           },
           "Wind": {
-            "type": {
-              "$ref": "#/components/schemas/OpenWeatherMapResponseWind"
-            },
+            "$ref": "#/components/schemas/OpenWeatherMapResponseWind",
             "x-oapi-codegen-extra-tags": {
               "json": "wind"
             }
           },
           "Clouds": {
-            "type": {
-              "$ref": "#/components/schemas/OpenWeatherMapResponseClouds"
-            },
+            "$ref": "#/components/schemas/OpenWeatherMapResponseClouds",
             "x-oapi-codegen-extra-tags": {
               "json": "clouds"
             }
           },
           "Rain": {
-            "type": {
-              "$ref": "#/components/schemas/OpenWeatherMapResponseRain"
-            },
+            "$ref": "#/components/schemas/OpenWeatherMapResponseRain",
             "x-oapi-codegen-extra-tags": {
               "json": "rain"
             }
           },
           "Snow": {
-            "type": {
-              "$ref": "#/components/schemas/OpenWeatherMapResponseSnow"
-            },
+            "$ref": "#/components/schemas/OpenWeatherMapResponseSnow",
             "x-oapi-codegen-extra-tags": {
               "json": "snow"
             }
@@ -200,9 +202,7 @@
             }
           },
           "System": {
-            "type": {
-              "$ref": "#/components/schemas/OpenWeatherMapResponseSystem"
-            },
+            "$ref": "#/components/schemas/OpenWeatherMapResponseSystem",
             "x-oapi-codegen-extra-tags": {
               "json": "sys"
             }
@@ -300,7 +300,9 @@
           "FeelsLike": {
             "type": "number",
             "format": "double",
-            "x-oapi-codegen-extra-tags": "json:\"feels_like\""
+            "x-oapi-codegen-extra-tags": {
+              "json": "feels_like"
+            }
           },
           "Pressure": {
             "type": "number",
@@ -545,6 +547,30 @@
             "x-oapi-codegen-extra-tags": {
               "json": "appid"
             }
+          }
+        }
+      },
+      "WeatherConditionGetResponse": {
+        "description": "Weather Web App Parameters for Get Weather Data",
+        "type": "object",
+        "required": [
+          "temperature",
+          "temperature_condition",
+          "outside_condition",
+          "city"
+        ],
+        "properties": {
+          "city": {
+            "type": "string"
+          },
+          "outside_condition": {
+            "type": "string"
+          },
+          "temperature_condition": {
+            "type": "string"
+          },
+          "temperature": {
+            "type": "string"
           }
         }
       }

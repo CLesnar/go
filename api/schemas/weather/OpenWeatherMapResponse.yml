@@ -15,13 +15,11 @@ required:
   - Cod
 properties:
   Coordinates:
-    type: 
-      $ref: ./OpenWeatherMapResponseCoordinates.yml
+    $ref: "./OpenWeatherMapResponseCoordinates.yml"
     x-oapi-codegen-extra-tags:
       json: coord
   Weather:
-    type: 
-      $ref: ./OpenWeatherMapResponseWeather.yml
+    $ref: "./OpenWeatherMapResponseWeather.yml"
     x-oapi-codegen-extra-tags:
       json: weather
   Base:
@@ -29,8 +27,7 @@ properties:
     x-oapi-codegen-extra-tags:
       json: base
   Main:
-    type: 
-      $ref: ./OpenWeatherMapResponseMain.yml
+    $ref: "./OpenWeatherMapResponseMain.yml"
     x-oapi-codegen-extra-tags:
       json: main
   Visibility:
@@ -39,23 +36,19 @@ properties:
     x-oapi-codegen-extra-tags:
       json: visibility
   Wind:
-    type: 
-      $ref: ./OpenWeatherMapResponseWind.yml
+    $ref: "./OpenWeatherMapResponseWind.yml"
     x-oapi-codegen-extra-tags:
       json: wind
   Clouds:
-    type: 
-      $ref: ./OpenWeatherMapResponseClouds.yml
+    $ref: "./OpenWeatherMapResponseClouds.yml"
     x-oapi-codegen-extra-tags:
       json: clouds
   Rain:
-    type: 
-      $ref: ./OpenWeatherMapResponseRain.yml
+    $ref: "./OpenWeatherMapResponseRain.yml"
     x-oapi-codegen-extra-tags:
       json: rain
   Snow:
-    type: 
-      $ref: ./OpenWeatherMapResponseSnow.yml
+    $ref: "./OpenWeatherMapResponseSnow.yml"
     x-oapi-codegen-extra-tags:
       json: snow
   TimeData:
@@ -64,8 +57,7 @@ properties:
     x-oapi-codegen-extra-tags:
       json: dt
   System:
-    type: 
-      $ref: ./OpenWeatherMapResponseSystem.yml
+    $ref: "./OpenWeatherMapResponseSystem.yml"
     x-oapi-codegen-extra-tags:
       json: sys
   TimeZone:

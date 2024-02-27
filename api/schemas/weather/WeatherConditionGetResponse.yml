@@ -1,0 +1,16 @@
+description: Weather Web App Parameters for Get Weather Data
+type: object
+required:
+  - temperature
+  - temperature_condition
+  - outside_condition
+  - city
+properties:
+  city:
+    type: string
+  outside_condition:
+    type: string
+  temperature_condition:
+    type: string
+  temperature:
+    type: string

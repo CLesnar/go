@@ -1,38 +1,38 @@
 description: Open Weather API System Data.
 type: object
 required:
-  - Type   
-  - Id     
+  - Type
+  - Id
   - Message
   - Country
   - Sunrise
-  - Sunset 
+  - Sunset
 properties:
   Type:
     type: number
     format: int64
     x-oapi-codegen-extra-tags:
-      json: "type" 
+      json: type
   Id:
     type: number
     format: int64
     x-oapi-codegen-extra-tags:
-      json: "id"   
+      json: id
   Message:
     type: string
     x-oapi-codegen-extra-tags:
-      json: "message"
+      json: message
   Country:
     type: string
     x-oapi-codegen-extra-tags:
-      json: "country"
+      json: country
   Sunrise:
     type: number
     format: int64
     x-oapi-codegen-extra-tags:
-      json: "sunrise"
+      json: sunrise
   Sunset:
     type: number
     format: int64
     x-oapi-codegen-extra-tags:
-      json: "sunset"
+      json: sunset

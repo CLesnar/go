@@ -1,9 +1,9 @@
 get:
-  description: Very simple Health Check
+  description: Get the weather condition.
   responses:
     '200':
     description: Successful operation
     content:
       application/json:
         schema:
-          $ref: "../schemas/Health.yml"
+          $ref: "../../schemas/weather/WeatherConditionGetResponse.yml"

@@ -14,39 +14,39 @@ properties:
     type: number
     format: double
     x-oapi-codegen-extra-tags:
-      json: "temp"      
+      json: temp
   FeelsLike:
     type: number
     format: double
     x-oapi-codegen-extra-tags:
-      json:"feels_like"
+      json: feels_like
   Pressure:
     type: number
     format: double
     x-oapi-codegen-extra-tags:
-      json: "pressure"
+      json: pressure
   Humidity:
     type: number
     format: double
     x-oapi-codegen-extra-tags:
-      json: "humidity"
+      json: humidity
   TemperatureMin:
     type: number
     format: double
     x-oapi-codegen-extra-tags:
-      json: "temp_min"
+      json: temp_min
   TemperatureMax:
     type: number
     format: double
     x-oapi-codegen-extra-tags:
-      json: "temp_max"
+      json: temp_max
   SeaLevel:
     type: number
     format: double
     x-oapi-codegen-extra-tags:
-      json: "sea_level"
+      json: sea_level
   GroundLevel:
     type: number
     format: double
     x-oapi-codegen-extra-tags:
-      json: "grnd_level"
+      json: grnd_level

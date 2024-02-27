@@ -9,8 +9,10 @@ security:
   - BearerAuth: []
   - ApiKeyAuth: []
 paths:
-  /health/:
+  /health:
     $ref: ./paths/Health.yml
+  /v1/weather/data:
+    $ref: ./paths/weather/WeatherConditionGet.yml
 components:
   securitySchemas:
     BearerAuth:
@@ -45,3 +47,5 @@ components:
       $ref: ./schemas/weather/OpenWeatherMapResponseWind.yml
     WeatherConditionGetParameters: 
       $ref: ./schemas/weather/WeatherConditionGetParameters.yml
+    WeatherConditionGetResponse: 
+      $ref: ./schemas/weather/WeatherConditionGetResponse.yml
