@@ -10,7 +10,7 @@ security:
   - ApiKeyAuth: []
 paths:
   /health/:
-    $ref: ./paths/health.yml
+    $ref: ./paths/Health.yml
 components:
   securitySchemas:
     BearerAuth:

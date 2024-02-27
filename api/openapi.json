@@ -1,0 +1,65 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "CLesnar Go Models",
+    "description": "Common Data Models",
+    "version": "0.1.0"
+  },
+  "servers": [
+    {
+      "url": "http:localhost:8111"
+    }
+  ],
+  "security": [
+    {
+      "BearerAuth": []
+    },
+    {
+      "ApiKeyAuth": []
+    }
+  ],
+  "paths": {
+    "/health/": {
+      "get": {
+        "description": "Very simple Health Check",
+        "responses": {
+          "200": null,
+          "description": "Successful operation",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Health"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemas": {
+      "BearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      },
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-API-Key"
+      }
+    },
+    "schemas": {
+      "Health": {
+        "description": "Simple Health Check",
+        "type": "object",
+        "required": null,
+        "properties": {
+          "ok": {
+            "type": "bool",
+            "default": true
+          }
+        }
+      }
+    }
+  }
+}

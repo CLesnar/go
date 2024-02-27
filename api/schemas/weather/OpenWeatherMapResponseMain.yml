@@ -1,0 +1,52 @@
+description: Open Weather API Main Data.
+type: object
+required:
+  - Temperature
+  - FeelsLike
+  - Pressure
+  - Humidity
+  - TemperatureMin
+  - TemperatureMax
+  - SeaLevel
+  - GroundLevel
+properties:
+  Temperature:
+    type: number
+    format: double
+    x-oapi-codegen-extra-tags:
+      json: `json:"temp"`      
+  FeelsLike:
+    type: number
+    format: double
+    x-oapi-codegen-extra-tags:
+      json: `json:"feels_like"`
+  Pressure:
+    type: number
+    format: double
+    x-oapi-codegen-extra-tags:
+      json: `json:"pressure"`  
+  Humidity:
+    type: number
+    format: double
+    x-oapi-codegen-extra-tags:
+      json: `json:"humidity"`  
+  TemperatureMin:
+    type: number
+    format: double
+    x-oapi-codegen-extra-tags:
+      json: `json:"temp_min"`  
+  TemperatureMax:
+    type: number
+    format: double
+    x-oapi-codegen-extra-tags:
+      json: `json:"temp_max"`  
+  SeaLevel:
+    type: number
+    format: double
+    x-oapi-codegen-extra-tags:
+      json: `json:"sea_level"` 
+  GroundLevel:
+    type: number
+    format: double
+    x-oapi-codegen-extra-tags:
+      json: `json:"grnd_level"`

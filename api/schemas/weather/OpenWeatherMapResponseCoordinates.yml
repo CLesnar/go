@@ -1,0 +1,16 @@
+description: Open Weather API Coordinates Data.
+type: object
+required:
+  - Latitude
+  - Longitude
+properties:
+  Latitude:
+    type: number
+    format: double
+    x-oapi-codegen-extra-tags:
+      json: lat
+  Longitude:
+    type: number
+    format: double
+    x-oapi-codegen-extra-tags:
+      json: lon

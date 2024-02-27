@@ -1,0 +1,16 @@
+description: Open Weather API Snow Data.
+type: object
+required:
+  - Volume1Hour
+  - Volume3Hour
+properties:
+  Volume1Hour:
+    type: number
+    format: double
+    x-oapi-codegen-extra-tags:
+      json: 1h
+  Volume3Hour:
+    type: number
+    format: double
+    x-oapi-codegen-extra-tags:
+      json: 3h

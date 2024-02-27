@@ -1,0 +1,30 @@
+description: Open Weather API Parameters for Get Weather Data
+type: object
+required:
+properties:
+  Latitude:
+    type: number
+    format: double
+    x-oapi-codegen-extra-tags:
+      json: lat
+  Longitude:
+    type: number
+    format: double
+    x-oapi-codegen-extra-tags:
+      json: lat
+  AppId:
+    type: string
+    x-oapi-codegen-extra-tags:
+      json: appid
+  Mode:
+    type: string
+    x-oapi-codegen-extra-tags:
+      json: mode
+  Units:
+    type: string
+    x-oapi-codegen-extra-tags:
+      json: units
+  Language:
+    type: string
+    x-oapi-codegen-extra-tags:
+      json: lang

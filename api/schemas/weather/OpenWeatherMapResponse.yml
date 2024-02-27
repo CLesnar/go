@@ -1,0 +1,77 @@
+description: 'Open Weather API Response to GET Current Data: https://api.openweathermap.org/data/2.5/weather.'
+type: object
+required:
+properties:
+  Coordinates:
+    type: object
+      $ref: ./OpenWeatherMapWeatherData.yml
+    x-oapi-codegen-extra-tags:
+      json: coord
+  Weather:
+    type: object
+      $ref: ./OpenWeatherMapWeatherData.yml
+    x-oapi-codegen-extra-tags:
+      json: weather
+  Base:
+    type: string
+    x-oapi-codegen-extra-tags:
+      json: base
+  Main:
+    type: object
+      $ref: ./OpenWeatherMapMainData.yml
+    x-oapi-codegen-extra-tags:
+      json: main
+  Visibility:
+    type: number
+    format: double
+    x-oapi-codegen-extra-tags:
+      json: visibility
+  Wind:
+    type: object
+      $ref: ./OpenWeatherMapWindData.yml
+    x-oapi-codegen-extra-tags:
+      json: wind
+  Clouds:
+    type: object
+      $ref: ./OpenWeatherMapCloudsData.yml
+    x-oapi-codegen-extra-tags:
+      json: clouds
+  Rain:
+    type: object
+      $ref: ./OpenWeatherMapRainsData.yml
+    x-oapi-codegen-extra-tags:
+      json: rain
+  Snow:
+    type: object
+      $ref: ./OpenWeatherMapSnowData.yml
+    x-oapi-codegen-extra-tags:
+      json: snow
+  TimeData:
+    type: number
+    format: double
+    x-oapi-codegen-extra-tags:
+      json: dt
+  System:
+    type: object
+      $ref: ./OpenWeatherMapSystemData.yml
+    x-oapi-codegen-extra-tags:
+      json: sys
+  TimeZone:
+    type: number
+    format: int64
+    x-oapi-codegen-extra-tags:
+      json: timezone
+  Id:
+    type: number
+    format: int64
+    x-oapi-codegen-extra-tags:
+      json: id
+  Name:
+    type: string
+    x-oapi-codegen-extra-tags:
+      json: name
+  Cod:
+    type: number
+    format: int64
+    x-oapi-codegen-extra-tags:
+      json: cod

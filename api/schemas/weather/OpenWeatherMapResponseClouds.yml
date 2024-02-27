@@ -1,0 +1,10 @@
+description: Open Weather API Clouds Data.
+type: object
+required:
+  - CloudinessPercent
+properties:
+  CloudinessPercent:
+    type: number
+    format: double
+    x-oapi-codegen-extra-tags:
+      json: all

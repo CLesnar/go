@@ -1,0 +1,7 @@
+description: Simple Health Check
+type: object
+required:
+properties:
+  ok:
+    type: bool
+    default: true
