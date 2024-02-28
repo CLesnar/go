@@ -1,0 +1,45 @@
+description: 'Magic: The Gathering Standard game play meta data'
+type: object
+required:
+  - battlefield
+  - hand
+  - library
+  - graveyard
+  - the_stack
+  - exile
+properties:
+  battlefield:
+    description: 'Cards in Battlefield'
+    type: array
+    items:
+      $ref: ./MtgBattlefield.yml
+  hand:
+    description: 'List of cards in Player hand'
+    type: array
+    items:
+      $ref: ./MtgCard.yml
+  library:
+    description: 'Lands / Resources List'
+    type: array
+    items:
+      $ref: ./MtgCard.yml
+  graveyard:
+    description: 'Lands / Resources List'
+    type: array
+    items:
+      $ref: ./MtgCard.yml
+  the_stack:
+    description: 'Spells unresolved List'
+    type: array
+    items:
+      $ref: ./MtgCard.yml
+  exile:
+    description: 'Lands / Resources List'
+    type: array
+    items:
+      $ref: ./MtgCard.yml
+  # Command: 
+  #   description: 'Commander when in Commander game play format'
+  #   type: 
+  #     $ref: ./MtgCard.yml
+

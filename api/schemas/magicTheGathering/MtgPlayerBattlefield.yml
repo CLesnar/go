@@ -1,0 +1,17 @@
+description: 'Magic: The Gathering Standard game play meta data'
+type: object
+required:
+  - creatures
+  - lands
+properties:
+  creatures:
+    description: 'Creatures List'
+    type: array
+    items:
+      $ref: ./MtgCard.yml
+  lands:
+    description: 'Lands / Resources List'
+    type: array
+    items:
+      $ref: ./MtgCard.yml
+

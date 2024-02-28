@@ -34,7 +34,7 @@ func Serve(ctx context.Context, s Scope, errChan chan<- error) {
 	corshandler := cors(r)
 
 	timeout := environment.GetEnvVar("TIMEOUT", "30")
-	port := environment.GetEnvVar("PORT", "8111")
+	port := environment.GetEnvVar("PORT", "8111") // TODO: make variable <NAME>_PORT so multiple services defined in /cmd/ dir can run at the same time.
 	if devenv := environment.GetEnvVar("DEVENV", ""); len(devenv) > 0 {
 		timeout = "500" // increase timeout for debugging
 	}
