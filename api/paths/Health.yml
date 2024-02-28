@@ -2,8 +2,14 @@ get:
   description: Very simple Health Check
   responses:
     '200':
-    description: Successful operation
-    content:
-      application/json:
-        schema:
-          $ref: "../schemas/Health.yml"
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: "../schemas/Health.yml"
+    # '400':
+    #   description: Bad request
+    #   content:
+    #     application/json:
+    #       schema:
+    #         $ref: '#/components/schemas/Error'

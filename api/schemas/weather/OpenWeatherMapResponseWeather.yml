@@ -19,7 +19,7 @@ properties:
     x-oapi-codegen-extra-tags:
       json: icon
   Id:
-    type: number
+    type: integer
     format: int64
     x-oapi-codegen-extra-tags:
       json: id

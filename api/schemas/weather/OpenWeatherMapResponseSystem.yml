@@ -9,12 +9,12 @@ required:
   - Sunset
 properties:
   Type:
-    type: number
+    type: integer
     format: int64
     x-oapi-codegen-extra-tags:
       json: type
   Id:
-    type: number
+    type: integer
     format: int64
     x-oapi-codegen-extra-tags:
       json: id
@@ -27,12 +27,12 @@ properties:
     x-oapi-codegen-extra-tags:
       json: country
   Sunrise:
-    type: number
+    type: integer
     format: int64
     x-oapi-codegen-extra-tags:
       json: sunrise
   Sunset:
-    type: number
+    type: integer
     format: int64
     x-oapi-codegen-extra-tags:
       json: sunset

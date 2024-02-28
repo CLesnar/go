@@ -1,9 +1,30 @@
 get:
   description: Get the weather condition.
+  parameters:
+    - in: query
+      name: lat
+      description: Latitude to get weather conditions for.
+      schema:
+        type: number
+        format: double
+      required: true
+    - in: query
+      name: lon
+      description: Longitude to get weather conditions for.
+      schema:
+        type: number
+        format: double
+      required: true
+    - in: query
+      name: appid
+      description: API ID to Open Weather API.
+      schema:
+        type: string
+      required: true
   responses:
     '200':
-    description: Successful operation
-    content:
-      application/json:
-        schema:
-          $ref: "../../schemas/weather/WeatherConditionGetResponse.yml"
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/weather/WeatherConditionGetResponse.yml"

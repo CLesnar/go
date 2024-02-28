@@ -23,12 +23,13 @@
       "get": {
         "description": "Very simple Health Check",
         "responses": {
-          "200": null,
-          "description": "Successful operation",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Health"
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Health"
+                }
               }
             }
           }
@@ -38,13 +39,45 @@
     "/v1/weather/data": {
       "get": {
         "description": "Get the weather condition.",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "lat",
+            "description": "Latitude to get weather conditions for.",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            },
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "lon",
+            "description": "Longitude to get weather conditions for.",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            },
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "appid",
+            "description": "API ID to Open Weather API.",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
         "responses": {
-          "200": null,
-          "description": "Successful operation",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/WeatherConditionGetResponse"
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WeatherConditionGetResponse"
+                }
               }
             }
           }
@@ -71,8 +104,7 @@
         "required": null,
         "properties": {
           "ok": {
-            "type": "bool",
-            "default": true
+            "type": "boolean"
           }
         }
       },
@@ -208,14 +240,14 @@
             }
           },
           "TimeZone": {
-            "type": "number",
+            "type": "integer",
             "format": "int64",
             "x-oapi-codegen-extra-tags": {
               "json": "timezone"
             }
           },
           "Id": {
-            "type": "number",
+            "type": "integer",
             "format": "int64",
             "x-oapi-codegen-extra-tags": {
               "json": "id"
@@ -228,7 +260,7 @@
             }
           },
           "Cod": {
-            "type": "number",
+            "type": "integer",
             "format": "int64",
             "x-oapi-codegen-extra-tags": {
               "json": "cod"
@@ -409,14 +441,14 @@
         ],
         "properties": {
           "Type": {
-            "type": "number",
+            "type": "integer",
             "format": "int64",
             "x-oapi-codegen-extra-tags": {
               "json": "type"
             }
           },
           "Id": {
-            "type": "number",
+            "type": "integer",
             "format": "int64",
             "x-oapi-codegen-extra-tags": {
               "json": "id"
@@ -435,14 +467,14 @@
             }
           },
           "Sunrise": {
-            "type": "number",
+            "type": "integer",
             "format": "int64",
             "x-oapi-codegen-extra-tags": {
               "json": "sunrise"
             }
           },
           "Sunset": {
-            "type": "number",
+            "type": "integer",
             "format": "int64",
             "x-oapi-codegen-extra-tags": {
               "json": "sunset"
@@ -479,7 +511,7 @@
             }
           },
           "Id": {
-            "type": "number",
+            "type": "integer",
             "format": "int64",
             "x-oapi-codegen-extra-tags": {
               "json": "id"

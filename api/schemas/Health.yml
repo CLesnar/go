@@ -3,5 +3,4 @@ type: object
 required:
 properties:
   ok:
-    type: bool
-    default: true
+    type: boolean

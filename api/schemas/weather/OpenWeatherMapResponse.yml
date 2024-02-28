@@ -61,12 +61,12 @@ properties:
     x-oapi-codegen-extra-tags:
       json: sys
   TimeZone:
-    type: number
+    type: integer
     format: int64
     x-oapi-codegen-extra-tags:
       json: timezone
   Id:
-    type: number
+    type: integer
     format: int64
     x-oapi-codegen-extra-tags:
       json: id
@@ -75,7 +75,7 @@ properties:
     x-oapi-codegen-extra-tags:
       json: name
   Cod:
-    type: number
+    type: integer
     format: int64
     x-oapi-codegen-extra-tags:
       json: cod
