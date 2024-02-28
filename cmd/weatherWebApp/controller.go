@@ -36,7 +36,7 @@ func (c *WeatherWebAppScope) GetWeatherDataHandler(w http.ResponseWriter, r *htt
 		chttp.RespondError(w, http.StatusInternalServerError, err)
 		return
 	}
-	resp, err := openWeatherMap.GetWeatherCondition(ctx, *params.Latitude, *params.Longitude, *params.ApiId)
+	resp, err := openWeatherMap.GetWeatherCondition(ctx, *params.Latitude, *params.Longitude, *params.AppId)
 	if err != nil {
 		chttp.RespondError(w, http.StatusInternalServerError, err)
 		return
