@@ -6,8 +6,8 @@ import (
 	"fmt"
 
 	"github.com/CLesnar/go/internal/pkg/http"
-	"github.com/CLesnar/go/internal/pkg/model"
 	"github.com/CLesnar/go/internal/pkg/util"
+	"github.com/CLesnar/go/pkg/model"
 )
 
 // openweatherapi is one source for getting weather data.
@@ -20,8 +20,8 @@ import (
 type OpenWeatherMap struct {
 }
 
-func (w *OpenWeatherMap) GetCurrentWeatherData(ctx context.Context, parameters model.OpenWeatherMapParametersGetCurrentData) (model.OpenWeatherMaResponseGetCurrentData, error) {
-	httpHelper, respData := http.Http{}, model.OpenWeatherMaResponseGetCurrentData{}
+func (w *OpenWeatherMap) GetCurrentWeatherData(ctx context.Context, parameters model.OpenWeatherMapParametersGetCurrentData) (model.OpenWeatherMapResponse, error) {
+	httpHelper, respData := http.Http{}, model.OpenWeatherMapResponse{}
 	resp, err := httpHelper.GetRequest(ctx, OpenWeatherMapBaseUrl, nil, parameters, nil)
 	if err != nil {
 		return respData, err
@@ -33,7 +33,7 @@ func (w *OpenWeatherMap) GetCurrentWeatherData(ctx context.Context, parameters m
 }
 
 func (w *OpenWeatherMap) GetWeatherCondition(ctx context.Context, lat float64, lon float64, apiKey string) (map[string]interface{}, error) {
-	parameters := model.OpenWeatherMapParametersGetCurrentData{ApiId: apiKey, Latitude: lat, Longitude: lon, Units: util.ConstantRef("imperial")}
+	parameters := model.OpenWeatherMapParametersGetCurrentData{AppId: util.ConstantRef(apiKey), Latitude: util.ConstantRef(lat), Longitude: util.ConstantRef(lon), Units: util.ConstantRef("imperial")}
 	weatherConditionMap := map[string]interface{}{}
 	data, err := w.GetCurrentWeatherData(ctx, parameters)
 	if err != nil {

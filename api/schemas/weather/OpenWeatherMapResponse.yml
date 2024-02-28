@@ -19,7 +19,10 @@ properties:
     x-oapi-codegen-extra-tags:
       json: coord
   Weather:
-    $ref: "./OpenWeatherMapResponseWeather.yml"
+    description: Open Weather API Weather Data.
+    type: array
+    items:
+      $ref: "./OpenWeatherMapResponseWeather.yml"
     x-oapi-codegen-extra-tags:
       json: weather
   Base:

@@ -1,9 +1,9 @@
 description: Weather Web App Parameters for Get Weather Data
 type: object
 required:
-  - Latitude
-  - Longitude
-  - AppId
+  # - Latitude
+  # - Longitude
+  # - AppId
 properties:
   Latitude:
     description: 'latitude of location on earth to get weather data for'

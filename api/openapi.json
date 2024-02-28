@@ -184,7 +184,11 @@
             }
           },
           "Weather": {
-            "$ref": "#/components/schemas/OpenWeatherMapResponseWeather",
+            "description": "Open Weather API Weather Data.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OpenWeatherMapResponseWeather"
+            },
             "x-oapi-codegen-extra-tags": {
               "json": "weather"
             }
@@ -588,11 +592,7 @@
       "WeatherConditionGetParameters": {
         "description": "Weather Web App Parameters for Get Weather Data",
         "type": "object",
-        "required": [
-          "Latitude",
-          "Longitude",
-          "AppId"
-        ],
+        "required": null,
         "properties": {
           "Latitude": {
             "description": "latitude of location on earth to get weather data for",

@@ -6,9 +6,9 @@ import (
 	"github.com/CLesnar/go/internal/pkg/util"
 )
 
-func (p WeatherConditionParameters) Validate() error {
-	if p.ApiId == nil || len(*p.ApiId) < 1 {
-		tag := util.FindFieldTagWithDefault(&p, &p.ApiId, "json", "appid")
+func (p WeatherConditionGetParameters) Validate() error {
+	if p.AppId == nil || len(*p.AppId) < 1 {
+		tag := util.FindFieldTagWithDefault(&p, &p.AppId, "json", "appid")
 		return fmt.Errorf("missing required path parameter '%s'", tag)
 	}
 	if p.Latitude == nil {

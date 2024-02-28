@@ -8,7 +8,7 @@ import (
 	"github.com/gorilla/mux"
 
 	chttp "github.com/CLesnar/go/internal/pkg/http"
-	"github.com/CLesnar/go/internal/pkg/model"
+	"github.com/CLesnar/go/pkg/model"
 	"github.com/CLesnar/go/pkg/weather"
 )
 
