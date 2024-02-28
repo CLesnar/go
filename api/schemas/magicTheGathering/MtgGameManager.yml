@@ -1,23 +1,31 @@
-description: 'Magic: The Gathering Standard game play meta data'
+description: 'Magic: The Gathering Game Manager and Game meta data'
 type: object
 required:
   - players
+  - game_phase
+  - player_turn
+  - game_format
+  - invalid_players
 properties:
   players:
     description: 'List Players playing MTG.'
     type: array
     items:
       $ref: ./MtgPlayer.yml
-  gamephase:
+  game_phase:
     description: 'Magic offically labels its gameplay as "Begin, Main Phase, Combat, Second Main Phase, and End"; some have subphases. For details see: https://en.wikipedia.org/wiki/Magic:_The_Gathering_rules#Gameplay.'
     type: string
     enum: ["Begin-Untap","Begin-Upkeep", "Begin-Draw","Main-First", "Combat-Beginning", "Combat-Declare-Attackers", "Combat-Declare-Blockers","Combat-Damage","Combat-End","Main-Second","End-Step","End-Cleanup"]
-  playerTurn: 
+  player_turn: 
     description: Current player turn. Index of playerBattleFields.
     type: integer
     format: int
-  invalid_player:
+  game_format:
+    description: 'Magic offically labels its gameplay as "Begin, Main Phase, Combat, Second Main Phase, and End"; some have subphases. For details see: https://en.wikipedia.org/wiki/Magic:_The_Gathering_rules#Gameplay.'
+    type: string
+    enum: ["Main-Second","End-Step","End-Cleanup"]
+  invalid_players:
     description: "List of errors from players' decks or other data. Empty list signals all players are valid and ready to play."
     type: array
-    items: object
-      additionalProperties: true
+    items:
+      additionalProperties: {}

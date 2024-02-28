@@ -8,9 +8,110 @@ const (
 	BearerAuthScopes = "BearerAuth.Scopes"
 )
 
+// Defines values for MtgGameManagerGameFormat.
+const (
+	MtgGameManagerGameFormatEndCleanup MtgGameManagerGameFormat = "End-Cleanup"
+	MtgGameManagerGameFormatEndStep    MtgGameManagerGameFormat = "End-Step"
+	MtgGameManagerGameFormatMainSecond MtgGameManagerGameFormat = "Main-Second"
+)
+
+// Defines values for MtgGameManagerGamePhase.
+const (
+	MtgGameManagerGamePhaseBeginDraw              MtgGameManagerGamePhase = "Begin-Draw"
+	MtgGameManagerGamePhaseBeginUntap             MtgGameManagerGamePhase = "Begin-Untap"
+	MtgGameManagerGamePhaseBeginUpkeep            MtgGameManagerGamePhase = "Begin-Upkeep"
+	MtgGameManagerGamePhaseCombatBeginning        MtgGameManagerGamePhase = "Combat-Beginning"
+	MtgGameManagerGamePhaseCombatDamage           MtgGameManagerGamePhase = "Combat-Damage"
+	MtgGameManagerGamePhaseCombatDeclareAttackers MtgGameManagerGamePhase = "Combat-Declare-Attackers"
+	MtgGameManagerGamePhaseCombatDeclareBlockers  MtgGameManagerGamePhase = "Combat-Declare-Blockers"
+	MtgGameManagerGamePhaseCombatEnd              MtgGameManagerGamePhase = "Combat-End"
+	MtgGameManagerGamePhaseEndCleanup             MtgGameManagerGamePhase = "End-Cleanup"
+	MtgGameManagerGamePhaseEndStep                MtgGameManagerGamePhase = "End-Step"
+	MtgGameManagerGamePhaseMainFirst              MtgGameManagerGamePhase = "Main-First"
+	MtgGameManagerGamePhaseMainSecond             MtgGameManagerGamePhase = "Main-Second"
+)
+
 // Health Simple Health Check
 type Health struct {
 	Ok *bool `json:"ok,omitempty"`
+}
+
+// MtgBattleField Magic: The Gathering Standard game play meta data
+type MtgBattleField struct {
+	// Creatures Creatures List
+	Creatures []MtgCard `json:"creatures"`
+
+	// Lands Lands / Resources List
+	Lands []MtgCard `json:"lands"`
+}
+
+// MtgCard Magic: The Gathering card data
+type MtgCard struct {
+	// Name Player Name
+	Name *string `json:"name,omitempty"`
+}
+
+// MtgGameManager Magic: The Gathering Game Manager and Game meta data
+type MtgGameManager struct {
+	// GameFormat Magic offically labels its gameplay as "Begin, Main Phase, Combat, Second Main Phase, and End"; some have subphases. For details see: https://en.wikipedia.org/wiki/Magic:_The_Gathering_rules#Gameplay.
+	GameFormat MtgGameManagerGameFormat `json:"game_format"`
+
+	// GamePhase Magic offically labels its gameplay as "Begin, Main Phase, Combat, Second Main Phase, and End"; some have subphases. For details see: https://en.wikipedia.org/wiki/Magic:_The_Gathering_rules#Gameplay.
+	GamePhase MtgGameManagerGamePhase `json:"game_phase"`
+
+	// InvalidPlayers List of errors from players' decks or other data. Empty list signals all players are valid and ready to play.
+	InvalidPlayers []map[string]interface{} `json:"invalid_players"`
+
+	// PlayerTurn Current player turn. Index of playerBattleFields.
+	PlayerTurn int `json:"player_turn"`
+
+	// Players List Players playing MTG.
+	Players []MtgPlayer `json:"players"`
+}
+
+// MtgGameManagerGameFormat Magic offically labels its gameplay as "Begin, Main Phase, Combat, Second Main Phase, and End"; some have subphases. For details see: https://en.wikipedia.org/wiki/Magic:_The_Gathering_rules#Gameplay.
+type MtgGameManagerGameFormat string
+
+// MtgGameManagerGamePhase Magic offically labels its gameplay as "Begin, Main Phase, Combat, Second Main Phase, and End"; some have subphases. For details see: https://en.wikipedia.org/wiki/Magic:_The_Gathering_rules#Gameplay.
+type MtgGameManagerGamePhase string
+
+// MtgPlayer Magic: The Gathering Standard game play meta data
+type MtgPlayer struct {
+	// Deck Deck cards List. Rules of the Deck: 60 Card minimum, 4 limit on copies (exception for basic lands).
+	Deck []MtgCard `json:"deck"`
+
+	// Name Player Name
+	Name string `json:"name"`
+
+	// Zones Cards in each Zone
+	Zones []MtgZones `json:"zones"`
+}
+
+// MtgZones Magic: The Gathering Standard game play meta data
+type MtgZones struct {
+	// Battlefield Cards in Battlefield
+	Battlefield []struct {
+		// Creatures Creatures List
+		Creatures []MtgCard `json:"creatures"`
+
+		// Lands Lands / Resources List
+		Lands []MtgCard `json:"lands"`
+	} `json:"battlefield"`
+
+	// Exile Lands / Resources List
+	Exile []MtgCard `json:"exile"`
+
+	// Graveyard Lands / Resources List
+	Graveyard []MtgCard `json:"graveyard"`
+
+	// Hand List of cards in Player hand
+	Hand []MtgCard `json:"hand"`
+
+	// Library Lands / Resources List
+	Library []MtgCard `json:"library"`
+
+	// TheStack Spells unresolved List
+	TheStack []MtgCard `json:"the_stack"`
 }
 
 // OpenWeatherMapParametersGetCurrentData Open Weather Map API Parameters for Get Weather Data. See OpenWeatherMap details on APIs: https://openweathermap.org/current

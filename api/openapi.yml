@@ -25,6 +25,7 @@ components:
   schemas:
     Health:
       $ref: ./schemas/Health.yml
+  # Weather Schemas 
     OpenWeatherMapParametersGetCurrentData: 
       $ref: ./schemas/weather/OpenWeatherMapParametersGetCurrentData.yml
     OpenWeatherMapResponse: 
@@ -49,3 +50,14 @@ components:
       $ref: ./schemas/weather/WeatherConditionGetParameters.yml
     WeatherConditionGetResponse: 
       $ref: ./schemas/weather/WeatherConditionGetResponse.yml
+  # Magic The Gather (MTG) Schemas
+    MtgZones: 
+      $ref: ./schemas/magicTheGathering/MtgZones.yml
+    MtgPlayer: 
+      $ref: ./schemas/magicTheGathering/MtgPlayer.yml
+    MtgBattleField: 
+      $ref: ./schemas/magicTheGathering/MtgBattleField.yml
+    MtgGameManager: 
+      $ref: ./schemas/magicTheGathering/MtgGameManager.yml
+    MtgCard: 
+      $ref: ./schemas/magicTheGathering/MtgCard.yml

@@ -646,6 +646,206 @@
             "type": "string"
           }
         }
+      },
+      "MtgZones": {
+        "description": "Magic: The Gathering Standard game play meta data",
+        "type": "object",
+        "required": [
+          "battlefield",
+          "hand",
+          "library",
+          "graveyard",
+          "the_stack",
+          "exile"
+        ],
+        "properties": {
+          "battlefield": {
+            "description": "Cards in Battlefield",
+            "type": "array",
+            "items": {
+              "description": "Magic: The Gathering Standard game play meta data",
+              "type": "object",
+              "required": [
+                "creatures",
+                "lands"
+              ],
+              "properties": {
+                "creatures": {
+                  "description": "Creatures List",
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MtgCard"
+                  }
+                },
+                "lands": {
+                  "description": "Lands / Resources List",
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MtgCard"
+                  }
+                }
+              }
+            }
+          },
+          "hand": {
+            "description": "List of cards in Player hand",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MtgCard"
+            }
+          },
+          "library": {
+            "description": "Lands / Resources List",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MtgCard"
+            }
+          },
+          "graveyard": {
+            "description": "Lands / Resources List",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MtgCard"
+            }
+          },
+          "the_stack": {
+            "description": "Spells unresolved List",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MtgCard"
+            }
+          },
+          "exile": {
+            "description": "Lands / Resources List",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MtgCard"
+            }
+          }
+        }
+      },
+      "MtgPlayer": {
+        "description": "Magic: The Gathering Standard game play meta data",
+        "type": "object",
+        "required": [
+          "zones",
+          "deck",
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "description": "Player Name",
+            "type": "string"
+          },
+          "zones": {
+            "description": "Cards in each Zone",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MtgZones"
+            }
+          },
+          "deck": {
+            "description": "Deck cards List. Rules of the Deck: 60 Card minimum, 4 limit on copies (exception for basic lands).",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MtgCard"
+            }
+          }
+        }
+      },
+      "MtgBattleField": {
+        "description": "Magic: The Gathering Standard game play meta data",
+        "type": "object",
+        "required": [
+          "creatures",
+          "lands"
+        ],
+        "properties": {
+          "creatures": {
+            "description": "Creatures List",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MtgCard"
+            }
+          },
+          "lands": {
+            "description": "Lands / Resources List",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MtgCard"
+            }
+          }
+        }
+      },
+      "MtgGameManager": {
+        "description": "Magic: The Gathering Game Manager and Game meta data",
+        "type": "object",
+        "required": [
+          "players",
+          "game_phase",
+          "player_turn",
+          "game_format",
+          "invalid_players"
+        ],
+        "properties": {
+          "players": {
+            "description": "List Players playing MTG.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MtgPlayer"
+            }
+          },
+          "game_phase": {
+            "description": "Magic offically labels its gameplay as \"Begin, Main Phase, Combat, Second Main Phase, and End\"; some have subphases. For details see: https://en.wikipedia.org/wiki/Magic:_The_Gathering_rules#Gameplay.",
+            "type": "string",
+            "enum": [
+              "Begin-Untap",
+              "Begin-Upkeep",
+              "Begin-Draw",
+              "Main-First",
+              "Combat-Beginning",
+              "Combat-Declare-Attackers",
+              "Combat-Declare-Blockers",
+              "Combat-Damage",
+              "Combat-End",
+              "Main-Second",
+              "End-Step",
+              "End-Cleanup"
+            ]
+          },
+          "player_turn": {
+            "description": "Current player turn. Index of playerBattleFields.",
+            "type": "integer",
+            "format": "int"
+          },
+          "game_format": {
+            "description": "Magic offically labels its gameplay as \"Begin, Main Phase, Combat, Second Main Phase, and End\"; some have subphases. For details see: https://en.wikipedia.org/wiki/Magic:_The_Gathering_rules#Gameplay.",
+            "type": "string",
+            "enum": [
+              "Main-Second",
+              "End-Step",
+              "End-Cleanup"
+            ]
+          },
+          "invalid_players": {
+            "description": "List of errors from players' decks or other data. Empty list signals all players are valid and ready to play.",
+            "type": "array",
+            "items": {
+              "additionalProperties": {}
+            }
+          }
+        }
+      },
+      "MtgCard": {
+        "description": "Magic: The Gathering card data",
+        "type": "object",
+        "required": null,
+        "properties": {
+          "name": {
+            "description": "Player Name",
+            "type": "string"
+          }
+        }
       }
     }
   }

@@ -1,0 +1,7 @@
+description: 'Magic: The Gathering card data'
+type: object
+required:
+properties:
+  name:
+    description: Player Name
+    type: string
