@@ -1,30 +1,36 @@
-description: Open Weather API Parameters for Get Weather Data
+description: 'Open Weather Map API Parameters for Get Weather Data. See OpenWeatherMap details on APIs: https://openweathermap.org/current'
 type: object
 required:
 properties:
   Latitude:
+    description: 'The latitude for which temperature data is retrieved for.'
     type: number
     format: double
     x-oapi-codegen-extra-tags:
       json: lat
   Longitude:
+    description: 'The longitude for which temperature data is retrieved for.'
     type: number
     format: double
     x-oapi-codegen-extra-tags:
-      json: lat
+      json: lon
   AppId:
+    description: 'The API Key for access to OpenWeatherMap API'
     type: string
     x-oapi-codegen-extra-tags:
       json: appid
   Mode:
+    description: Response format. Possible values are xml and html. If you don't use the mode parameter format is JSON by default.
     type: string
     x-oapi-codegen-extra-tags:
       json: mode
   Units:
+    description: 'Change the units the temperature response is in. Can be [standard, metric, imperial]. Where standard is absolute or Kelvin, metric is Celsius, imperial is Fahrenheit.'
     type: string
     x-oapi-codegen-extra-tags:
       json: units
   Language:
+    description: 'Change the language the response is in. Default is English.'
     type: string
     x-oapi-codegen-extra-tags:
       json: lang

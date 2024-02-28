@@ -7,18 +7,22 @@ required:
   - Icon
 properties:
   Main:
+    description: 'Group of weather parameters (Rain, Snow, Clouds etc.)'
     type: string
     x-oapi-codegen-extra-tags:
       json: main
   Description:
+    description: 'Weather condition within the group. Please find more here. You can get the output in your language.'
     type: string
     x-oapi-codegen-extra-tags:
       json: description
   Icon:
+    description: 'Weather icon id'
     type: string
     x-oapi-codegen-extra-tags:
       json: icon
   Id:
+    description: 'Weather condition id'
     type: integer
     format: int64
     x-oapi-codegen-extra-tags:

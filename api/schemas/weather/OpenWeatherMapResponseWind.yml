@@ -6,16 +6,19 @@ required:
   - Gust
 properties:
   Speed:
+    description: 'Wind speed. Unit Default: meter/sec, Metric: meter/sec, Imperial: miles/hour'
     type: number
     format: double
     x-oapi-codegen-extra-tags:
       json: speed
   WindDirectionDegrees:
+    description: 'Wind direction, degrees (meteorological)'
     type: number
     format: double
     x-oapi-codegen-extra-tags:
       json: deg
   Gust:
+    description: 'Wind gust. Unit Default: meter/sec, Metric: meter/sec, Imperial: miles/hour'
     type: number
     format: double
     x-oapi-codegen-extra-tags:

@@ -7,10 +7,14 @@ required:
   - city
 properties:
   city:
+    description: 'The City found at the latitude & longitude'
     type: string
   outside_condition:
+    description: 'The outside condition.'
     type: string
   temperature_condition:
+    description: 'The temperature condition.'
     type: string
   temperature:
+    description: 'The temperature in degrees fahrenheit'
     type: string

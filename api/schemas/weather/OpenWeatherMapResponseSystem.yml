@@ -9,29 +9,35 @@ required:
   - Sunset
 properties:
   Type:
+    description: 'Internal parameter'
     type: integer
     format: int64
     x-oapi-codegen-extra-tags:
       json: type
   Id:
+    description: 'Internal parameter'
     type: integer
     format: int64
     x-oapi-codegen-extra-tags:
       json: id
   Message:
+    description: 'Internal parameter'
     type: string
     x-oapi-codegen-extra-tags:
       json: message
   Country:
+    description: 'Country code (GB, JP etc.)'
     type: string
     x-oapi-codegen-extra-tags:
       json: country
   Sunrise:
+    description: 'Sunrise time, unix, UTC'
     type: integer
     format: int64
     x-oapi-codegen-extra-tags:
       json: sunrise
   Sunset:
+    description: 'Sunset time, unix, UTC'
     type: integer
     format: int64
     x-oapi-codegen-extra-tags:

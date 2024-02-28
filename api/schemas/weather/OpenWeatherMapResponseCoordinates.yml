@@ -5,11 +5,13 @@ required:
   - Longitude
 properties:
   Latitude:
+    description: 'Longitude of the location'
     type: number
     format: double
     x-oapi-codegen-extra-tags:
       json: lat
   Longitude:
+    description: 'Latitude of the location'
     type: number
     format: double
     x-oapi-codegen-extra-tags:

@@ -4,6 +4,7 @@ required:
   - CloudinessPercent
 properties:
   CloudinessPercent:
+    description: 'Cloudiness, %'
     type: number
     format: double
     x-oapi-codegen-extra-tags:

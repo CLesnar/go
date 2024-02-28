@@ -13,14 +13,25 @@ type Health struct {
 	Ok *bool `json:"ok,omitempty"`
 }
 
-// OpenWeatherMapParametersGetCurrentData Open Weather API Parameters for Get Weather Data
+// OpenWeatherMapParametersGetCurrentData Open Weather Map API Parameters for Get Weather Data. See OpenWeatherMap details on APIs: https://openweathermap.org/current
 type OpenWeatherMapParametersGetCurrentData struct {
-	AppId     *string  `json:"appid"`
-	Language  *string  `json:"lang"`
-	Latitude  *float64 `json:"lat"`
-	Longitude *float64 `json:"lat"`
-	Mode      *string  `json:"mode"`
-	Units     *string  `json:"units"`
+	// AppId The API Key for access to OpenWeatherMap API
+	AppId *string `json:"appid"`
+
+	// Language Change the language the response is in. Default is English.
+	Language *string `json:"lang"`
+
+	// Latitude The latitude for which temperature data is retrieved for.
+	Latitude *float64 `json:"lat"`
+
+	// Longitude The longitude for which temperature data is retrieved for.
+	Longitude *float64 `json:"lon"`
+
+	// Mode Response format. Possible values are xml and html. If you don't use the mode parameter format is JSON by default.
+	Mode *string `json:"mode"`
+
+	// Units Change the units the temperature response is in. Can be [standard, metric, imperial]. Where standard is absolute or Kelvin, metric is Celsius, imperial is Fahrenheit.
+	Units *string `json:"units"`
 }
 
 // OpenWeatherMapResponse Open Weather API Response to GET Current Data: https://api.openweathermap.org/data/2.5/weather.
@@ -60,76 +71,136 @@ type OpenWeatherMapResponse struct {
 
 // OpenWeatherMapResponseClouds Open Weather API Clouds Data.
 type OpenWeatherMapResponseClouds struct {
+	// CloudinessPercent Cloudiness, %
 	CloudinessPercent float64 `json:"all"`
 }
 
 // OpenWeatherMapResponseCoordinates Open Weather API Coordinates Data.
 type OpenWeatherMapResponseCoordinates struct {
-	Latitude  float64 `json:"lat"`
+	// Latitude Longitude of the location
+	Latitude float64 `json:"lat"`
+
+	// Longitude Latitude of the location
 	Longitude float64 `json:"lon"`
 }
 
 // OpenWeatherMapResponseMain Open Weather API Main Data.
 type OpenWeatherMapResponseMain struct {
-	FeelsLike      float64 `json:"feels_like"`
-	GroundLevel    float64 `json:"grnd_level"`
-	Humidity       float64 `json:"humidity"`
-	Pressure       float64 `json:"pressure"`
-	SeaLevel       float64 `json:"sea_level"`
-	Temperature    float64 `json:"temp"`
+	// FeelsLike Temperature. This temperature parameter accounts for the human perception of weather. Unit Default: Kelvin, Metric: Celsius, Imperial: Fahrenheit
+	FeelsLike float64 `json:"feels_like"`
+
+	// GroundLevel Atmospheric pressure on the ground level, hPa
+	GroundLevel float64 `json:"grnd_level"`
+
+	// Humidity Humidity, %
+	Humidity float64 `json:"humidity"`
+
+	// Pressure Atmospheric pressure on the sea level, hPa
+	Pressure float64 `json:"pressure"`
+
+	// SeaLevel Atmospheric pressure on the sea level, hPa
+	SeaLevel float64 `json:"sea_level"`
+
+	// Temperature Temperature. Unit Default: Kelvin, Metric: Celsius, Imperial: Fahrenheit
+	Temperature float64 `json:"temp"`
+
+	// TemperatureMax Maximum temperature at the moment. This is maximal currently observed temperature (within large megalopolises and urban areas). Please find more info here. Unit Default: Kelvin, Metric: Celsius, Imperial: Fahrenheit
 	TemperatureMax float64 `json:"temp_max"`
+
+	// TemperatureMin Minimum temperature at the moment. This is minimal currently observed temperature (within large megalopolises and urban areas). Please find more info here. Unit Default: Kelvin, Metric: Celsius, Imperial: Fahrenheit
 	TemperatureMin float64 `json:"temp_min"`
 }
 
 // OpenWeatherMapResponseRain Open Weather API Rain Data.
 type OpenWeatherMapResponseRain struct {
+	// Volume1Hour (where available) Rain volume for the last 1 hour, mm. Please note that only mm as units of measurement are available for this parameter
 	Volume1Hour float64 `json:"1h"`
+
+	// Volume3Hour (where available) Rain volume for the last 3 hours, mm. Please note that only mm as units of measurement are available for this parameter
 	Volume3Hour float64 `json:"3h"`
 }
 
 // OpenWeatherMapResponseSnow Open Weather API Snow Data.
 type OpenWeatherMapResponseSnow struct {
+	// Volume1Hour (where available) Snow volume for the last 1 hour, mm. Please note that only mm as units of measurement are available for this parameter
 	Volume1Hour float64 `json:"1h"`
+
+	// Volume3Hour (where available) Snow volume for the last 3 hours, mm. Please note that only mm as units of measurement are available for this parameter
 	Volume3Hour float64 `json:"3h"`
 }
 
 // OpenWeatherMapResponseSystem Open Weather API System Data.
 type OpenWeatherMapResponseSystem struct {
+	// Country Country code (GB, JP etc.)
 	Country string `json:"country"`
-	Id      int64  `json:"id"`
+
+	// Id Internal parameter
+	Id int64 `json:"id"`
+
+	// Message Internal parameter
 	Message string `json:"message"`
-	Sunrise int64  `json:"sunrise"`
-	Sunset  int64  `json:"sunset"`
-	Type    int64  `json:"type"`
+
+	// Sunrise Sunrise time, unix, UTC
+	Sunrise int64 `json:"sunrise"`
+
+	// Sunset Sunset time, unix, UTC
+	Sunset int64 `json:"sunset"`
+
+	// Type Internal parameter
+	Type int64 `json:"type"`
 }
 
 // OpenWeatherMapResponseWeather Open Weather API Weather Data.
 type OpenWeatherMapResponseWeather struct {
+	// Description Weather condition within the group. Please find more here. You can get the output in your language.
 	Description string `json:"description"`
-	Icon        string `json:"icon"`
-	Id          int64  `json:"id"`
-	Main        string `json:"main"`
+
+	// Icon Weather icon id
+	Icon string `json:"icon"`
+
+	// Id Weather condition id
+	Id int64 `json:"id"`
+
+	// Main Group of weather parameters (Rain, Snow, Clouds etc.)
+	Main string `json:"main"`
 }
 
 // OpenWeatherMapResponseWind Open Weather API Wind Data.
 type OpenWeatherMapResponseWind struct {
-	Gust                 float64 `json:"gust"`
-	Speed                float64 `json:"speed"`
+	// Gust Wind gust. Unit Default: meter/sec, Metric: meter/sec, Imperial: miles/hour
+	Gust float64 `json:"gust"`
+
+	// Speed Wind speed. Unit Default: meter/sec, Metric: meter/sec, Imperial: miles/hour
+	Speed float64 `json:"speed"`
+
+	// WindDirectionDegrees Wind direction, degrees (meteorological)
 	WindDirectionDegrees float64 `json:"deg"`
 }
 
 // WeatherConditionGetParameters Weather Web App Parameters for Get Weather Data
 type WeatherConditionGetParameters struct {
-	AppId     string  `json:"appid"`
-	Latitude  float64 `json:"lat"`
-	Longitude float64 `json:"lat"`
+	// AppId OpenWeatherMap API ID/Key generated by signing up to use their APIs
+	AppId string `json:"appid"`
+
+	// Latitude latitude of location on earth to get weather data for
+	Latitude float64 `json:"lat"`
+
+	// Longitude longitude of location on earth to get weather data for
+	Longitude float64 `json:"lon"`
 }
 
 // WeatherConditionGetResponse Weather Web App Parameters for Get Weather Data
 type WeatherConditionGetResponse struct {
-	City                 string `json:"city"`
-	OutsideCondition     string `json:"outside_condition"`
-	Temperature          string `json:"temperature"`
+	// City The City found at the latitude & longitude
+	City string `json:"city"`
+
+	// OutsideCondition The outside condition.
+	OutsideCondition string `json:"outside_condition"`
+
+	// Temperature The temperature in degrees fahrenheit
+	Temperature string `json:"temperature"`
+
+	// TemperatureCondition The temperature condition.
 	TemperatureCondition string `json:"temperature_condition"`
 }
 

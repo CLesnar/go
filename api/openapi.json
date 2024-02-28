@@ -109,11 +109,12 @@
         }
       },
       "OpenWeatherMapParametersGetCurrentData": {
-        "description": "Open Weather API Parameters for Get Weather Data",
+        "description": "Open Weather Map API Parameters for Get Weather Data. See OpenWeatherMap details on APIs: https://openweathermap.org/current",
         "type": "object",
         "required": null,
         "properties": {
           "Latitude": {
+            "description": "The latitude for which temperature data is retrieved for.",
             "type": "number",
             "format": "double",
             "x-oapi-codegen-extra-tags": {
@@ -121,31 +122,36 @@
             }
           },
           "Longitude": {
+            "description": "The longitude for which temperature data is retrieved for.",
             "type": "number",
             "format": "double",
             "x-oapi-codegen-extra-tags": {
-              "json": "lat"
+              "json": "lon"
             }
           },
           "AppId": {
+            "description": "The API Key for access to OpenWeatherMap API",
             "type": "string",
             "x-oapi-codegen-extra-tags": {
               "json": "appid"
             }
           },
           "Mode": {
+            "description": "Response format. Possible values are xml and html. If you don't use the mode parameter format is JSON by default.",
             "type": "string",
             "x-oapi-codegen-extra-tags": {
               "json": "mode"
             }
           },
           "Units": {
+            "description": "Change the units the temperature response is in. Can be [standard, metric, imperial]. Where standard is absolute or Kelvin, metric is Celsius, imperial is Fahrenheit.",
             "type": "string",
             "x-oapi-codegen-extra-tags": {
               "json": "units"
             }
           },
           "Language": {
+            "description": "Change the language the response is in. Default is English.",
             "type": "string",
             "x-oapi-codegen-extra-tags": {
               "json": "lang"
@@ -276,6 +282,7 @@
         ],
         "properties": {
           "CloudinessPercent": {
+            "description": "Cloudiness, %",
             "type": "number",
             "format": "double",
             "x-oapi-codegen-extra-tags": {
@@ -293,6 +300,7 @@
         ],
         "properties": {
           "Latitude": {
+            "description": "Longitude of the location",
             "type": "number",
             "format": "double",
             "x-oapi-codegen-extra-tags": {
@@ -300,6 +308,7 @@
             }
           },
           "Longitude": {
+            "description": "Latitude of the location",
             "type": "number",
             "format": "double",
             "x-oapi-codegen-extra-tags": {
@@ -323,6 +332,7 @@
         ],
         "properties": {
           "Temperature": {
+            "description": "Temperature. Unit Default: Kelvin, Metric: Celsius, Imperial: Fahrenheit",
             "type": "number",
             "format": "double",
             "x-oapi-codegen-extra-tags": {
@@ -330,6 +340,7 @@
             }
           },
           "FeelsLike": {
+            "description": "Temperature. This temperature parameter accounts for the human perception of weather. Unit Default: Kelvin, Metric: Celsius, Imperial: Fahrenheit",
             "type": "number",
             "format": "double",
             "x-oapi-codegen-extra-tags": {
@@ -337,6 +348,7 @@
             }
           },
           "Pressure": {
+            "description": "Atmospheric pressure on the sea level, hPa",
             "type": "number",
             "format": "double",
             "x-oapi-codegen-extra-tags": {
@@ -344,6 +356,7 @@
             }
           },
           "Humidity": {
+            "description": "Humidity, %",
             "type": "number",
             "format": "double",
             "x-oapi-codegen-extra-tags": {
@@ -351,6 +364,7 @@
             }
           },
           "TemperatureMin": {
+            "description": "Minimum temperature at the moment. This is minimal currently observed temperature (within large megalopolises and urban areas). Please find more info here. Unit Default: Kelvin, Metric: Celsius, Imperial: Fahrenheit",
             "type": "number",
             "format": "double",
             "x-oapi-codegen-extra-tags": {
@@ -358,6 +372,7 @@
             }
           },
           "TemperatureMax": {
+            "description": "Maximum temperature at the moment. This is maximal currently observed temperature (within large megalopolises and urban areas). Please find more info here. Unit Default: Kelvin, Metric: Celsius, Imperial: Fahrenheit",
             "type": "number",
             "format": "double",
             "x-oapi-codegen-extra-tags": {
@@ -365,6 +380,7 @@
             }
           },
           "SeaLevel": {
+            "description": "Atmospheric pressure on the sea level, hPa",
             "type": "number",
             "format": "double",
             "x-oapi-codegen-extra-tags": {
@@ -372,6 +388,7 @@
             }
           },
           "GroundLevel": {
+            "description": "Atmospheric pressure on the ground level, hPa",
             "type": "number",
             "format": "double",
             "x-oapi-codegen-extra-tags": {
@@ -389,6 +406,7 @@
         ],
         "properties": {
           "Volume1Hour": {
+            "description": "(where available) Rain volume for the last 1 hour, mm. Please note that only mm as units of measurement are available for this parameter",
             "type": "number",
             "format": "double",
             "x-oapi-codegen-extra-tags": {
@@ -396,6 +414,7 @@
             }
           },
           "Volume3Hour": {
+            "description": "(where available) Rain volume for the last 3 hours, mm. Please note that only mm as units of measurement are available for this parameter",
             "type": "number",
             "format": "double",
             "x-oapi-codegen-extra-tags": {
@@ -413,6 +432,7 @@
         ],
         "properties": {
           "Volume1Hour": {
+            "description": "(where available) Snow volume for the last 1 hour, mm. Please note that only mm as units of measurement are available for this parameter",
             "type": "number",
             "format": "double",
             "x-oapi-codegen-extra-tags": {
@@ -420,6 +440,7 @@
             }
           },
           "Volume3Hour": {
+            "description": "(where available) Snow volume for the last 3 hours, mm. Please note that only mm as units of measurement are available for this parameter",
             "type": "number",
             "format": "double",
             "x-oapi-codegen-extra-tags": {
@@ -441,6 +462,7 @@
         ],
         "properties": {
           "Type": {
+            "description": "Internal parameter",
             "type": "integer",
             "format": "int64",
             "x-oapi-codegen-extra-tags": {
@@ -448,6 +470,7 @@
             }
           },
           "Id": {
+            "description": "Internal parameter",
             "type": "integer",
             "format": "int64",
             "x-oapi-codegen-extra-tags": {
@@ -455,18 +478,21 @@
             }
           },
           "Message": {
+            "description": "Internal parameter",
             "type": "string",
             "x-oapi-codegen-extra-tags": {
               "json": "message"
             }
           },
           "Country": {
+            "description": "Country code (GB, JP etc.)",
             "type": "string",
             "x-oapi-codegen-extra-tags": {
               "json": "country"
             }
           },
           "Sunrise": {
+            "description": "Sunrise time, unix, UTC",
             "type": "integer",
             "format": "int64",
             "x-oapi-codegen-extra-tags": {
@@ -474,6 +500,7 @@
             }
           },
           "Sunset": {
+            "description": "Sunset time, unix, UTC",
             "type": "integer",
             "format": "int64",
             "x-oapi-codegen-extra-tags": {
@@ -493,24 +520,28 @@
         ],
         "properties": {
           "Main": {
+            "description": "Group of weather parameters (Rain, Snow, Clouds etc.)",
             "type": "string",
             "x-oapi-codegen-extra-tags": {
               "json": "main"
             }
           },
           "Description": {
+            "description": "Weather condition within the group. Please find more here. You can get the output in your language.",
             "type": "string",
             "x-oapi-codegen-extra-tags": {
               "json": "description"
             }
           },
           "Icon": {
+            "description": "Weather icon id",
             "type": "string",
             "x-oapi-codegen-extra-tags": {
               "json": "icon"
             }
           },
           "Id": {
+            "description": "Weather condition id",
             "type": "integer",
             "format": "int64",
             "x-oapi-codegen-extra-tags": {
@@ -529,6 +560,7 @@
         ],
         "properties": {
           "Speed": {
+            "description": "Wind speed. Unit Default: meter/sec, Metric: meter/sec, Imperial: miles/hour",
             "type": "number",
             "format": "double",
             "x-oapi-codegen-extra-tags": {
@@ -536,6 +568,7 @@
             }
           },
           "WindDirectionDegrees": {
+            "description": "Wind direction, degrees (meteorological)",
             "type": "number",
             "format": "double",
             "x-oapi-codegen-extra-tags": {
@@ -543,6 +576,7 @@
             }
           },
           "Gust": {
+            "description": "Wind gust. Unit Default: meter/sec, Metric: meter/sec, Imperial: miles/hour",
             "type": "number",
             "format": "double",
             "x-oapi-codegen-extra-tags": {
@@ -561,6 +595,7 @@
         ],
         "properties": {
           "Latitude": {
+            "description": "latitude of location on earth to get weather data for",
             "type": "number",
             "format": "double",
             "x-oapi-codegen-extra-tags": {
@@ -568,13 +603,15 @@
             }
           },
           "Longitude": {
+            "description": "longitude of location on earth to get weather data for",
             "type": "number",
             "format": "double",
             "x-oapi-codegen-extra-tags": {
-              "json": "lat"
+              "json": "lon"
             }
           },
           "AppId": {
+            "description": "OpenWeatherMap API ID/Key generated by signing up to use their APIs",
             "type": "string",
             "x-oapi-codegen-extra-tags": {
               "json": "appid"
@@ -593,15 +630,19 @@
         ],
         "properties": {
           "city": {
+            "description": "The City found at the latitude & longitude",
             "type": "string"
           },
           "outside_condition": {
+            "description": "The outside condition.",
             "type": "string"
           },
           "temperature_condition": {
+            "description": "The temperature condition.",
             "type": "string"
           },
           "temperature": {
+            "description": "The temperature in degrees fahrenheit",
             "type": "string"
           }
         }

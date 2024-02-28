@@ -11,41 +11,49 @@ required:
   - GroundLevel
 properties:
   Temperature:
+    description: 'Temperature. Unit Default: Kelvin, Metric: Celsius, Imperial: Fahrenheit'
     type: number
     format: double
     x-oapi-codegen-extra-tags:
       json: temp
   FeelsLike:
+    description: 'Temperature. This temperature parameter accounts for the human perception of weather. Unit Default: Kelvin, Metric: Celsius, Imperial: Fahrenheit'
     type: number
     format: double
     x-oapi-codegen-extra-tags:
       json: feels_like
   Pressure:
+    description: 'Atmospheric pressure on the sea level, hPa'
     type: number
     format: double
     x-oapi-codegen-extra-tags:
       json: pressure
   Humidity:
+    description: 'Humidity, %'
     type: number
     format: double
     x-oapi-codegen-extra-tags:
       json: humidity
   TemperatureMin:
+    description: 'Minimum temperature at the moment. This is minimal currently observed temperature (within large megalopolises and urban areas). Please find more info here. Unit Default: Kelvin, Metric: Celsius, Imperial: Fahrenheit'
     type: number
     format: double
     x-oapi-codegen-extra-tags:
       json: temp_min
   TemperatureMax:
+    description: 'Maximum temperature at the moment. This is maximal currently observed temperature (within large megalopolises and urban areas). Please find more info here. Unit Default: Kelvin, Metric: Celsius, Imperial: Fahrenheit'
     type: number
     format: double
     x-oapi-codegen-extra-tags:
       json: temp_max
   SeaLevel:
+    description: 'Atmospheric pressure on the sea level, hPa'
     type: number
     format: double
     x-oapi-codegen-extra-tags:
       json: sea_level
   GroundLevel:
+    description: 'Atmospheric pressure on the ground level, hPa'
     type: number
     format: double
     x-oapi-codegen-extra-tags:
