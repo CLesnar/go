@@ -17,29 +17,29 @@ properties:
     description: 'List of cards in Player hand'
     type: array
     items:
-      $ref: ./MtgCard.yml
+      $ref: ./MtgBattleCard.yml
   library:
     description: 'Lands / Resources List'
     type: array
     items:
-      $ref: ./MtgCard.yml
+      $ref: ./MtgBattleCard.yml
   graveyard:
     description: 'Lands / Resources List'
     type: array
     items:
-      $ref: ./MtgCard.yml
+      $ref: ./MtgBattleCard.yml
   the_stack:
     description: 'Spells unresolved List'
     type: array
     items:
-      $ref: ./MtgCard.yml
+      $ref: ./MtgBattleCard.yml
   exile:
     description: 'Lands / Resources List'
     type: array
     items:
-      $ref: ./MtgCard.yml
+      $ref: ./MtgBattleCard.yml
   # Command: 
   #   description: 'Commander when in Commander game play format'
   #   type: 
-  #     $ref: ./MtgCard.yml
+  #     $ref: ./MtgBattleCard.yml
 

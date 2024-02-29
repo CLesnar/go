@@ -36,13 +36,34 @@ type Health struct {
 	Ok *bool `json:"ok,omitempty"`
 }
 
+// MtgBattleCard Magic: The Gathering card data with meta data for in play. This augments the card for in play activities.
+type MtgBattleCard struct {
+	// Card Magic: The Gathering card data
+	Card *MtgCard `json:"card,omitempty"`
+
+	// IsAttacker boolean signaling the card is being used this turn as an attacker within play or battle.
+	IsAttacker *bool `json:"is_attacker,omitempty"`
+
+	// IsBlocker boolean signaling the card is being used this turn as a blocker within play or battle.
+	IsBlocker *bool `json:"is_blocker,omitempty"`
+
+	// IsTapped boolean signaling the card has been tapped this turn within play or battle.
+	IsTapped *bool `json:"is_tapped,omitempty"`
+
+	// Life life of this creature this turn.
+	Life *string `json:"life,omitempty"`
+
+	// Power power of attack or defense this turn.
+	Power *string `json:"power,omitempty"`
+}
+
 // MtgBattleField Magic: The Gathering Standard game play meta data
 type MtgBattleField struct {
 	// Creatures Creatures List
-	Creatures []MtgCard `json:"creatures"`
+	Creatures []MtgBattleCard `json:"creatures"`
 
 	// Lands Lands / Resources List
-	Lands []MtgCard `json:"lands"`
+	Lands []MtgBattleCard `json:"lands"`
 }
 
 // MtgCard Magic: The Gathering card data
@@ -87,31 +108,37 @@ type MtgPlayer struct {
 	Zones []MtgZones `json:"zones"`
 }
 
+// MtgSet Magic: The Gathering card data
+type MtgSet struct {
+	// Name Set Name
+	Name *string `json:"name,omitempty"`
+}
+
 // MtgZones Magic: The Gathering Standard game play meta data
 type MtgZones struct {
 	// Battlefield Cards in Battlefield
 	Battlefield []struct {
 		// Creatures Creatures List
-		Creatures []MtgCard `json:"creatures"`
+		Creatures []MtgBattleCard `json:"creatures"`
 
 		// Lands Lands / Resources List
-		Lands []MtgCard `json:"lands"`
+		Lands []MtgBattleCard `json:"lands"`
 	} `json:"battlefield"`
 
 	// Exile Lands / Resources List
-	Exile []MtgCard `json:"exile"`
+	Exile []MtgBattleCard `json:"exile"`
 
 	// Graveyard Lands / Resources List
-	Graveyard []MtgCard `json:"graveyard"`
+	Graveyard []MtgBattleCard `json:"graveyard"`
 
 	// Hand List of cards in Player hand
-	Hand []MtgCard `json:"hand"`
+	Hand []MtgBattleCard `json:"hand"`
 
 	// Library Lands / Resources List
-	Library []MtgCard `json:"library"`
+	Library []MtgBattleCard `json:"library"`
 
 	// TheStack Spells unresolved List
-	TheStack []MtgCard `json:"the_stack"`
+	TheStack []MtgBattleCard `json:"the_stack"`
 }
 
 // OpenWeatherMapParametersGetCurrentData Open Weather Map API Parameters for Get Weather Data. See OpenWeatherMap details on APIs: https://openweathermap.org/current

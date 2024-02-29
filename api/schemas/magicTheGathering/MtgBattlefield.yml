@@ -8,10 +8,10 @@ properties:
     description: 'Creatures List'
     type: array
     items:
-      $ref: ./MtgCard.yml
+      $ref: ./MtgBattleCard.yml
   lands:
     description: 'Lands / Resources List'
     type: array
     items:
-      $ref: ./MtgCard.yml
+      $ref: ./MtgBattleCard.yml
 

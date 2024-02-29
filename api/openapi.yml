@@ -59,5 +59,9 @@ components:
       $ref: ./schemas/magicTheGathering/MtgBattleField.yml
     MtgGameManager: 
       $ref: ./schemas/magicTheGathering/MtgGameManager.yml
+    MtgSet: 
+      $ref: ./schemas/magicTheGathering/MtgSet.yml
     MtgCard: 
       $ref: ./schemas/magicTheGathering/MtgCard.yml
+    MtgBattleCard: 
+      $ref: ./schemas/magicTheGathering/MtgBattleCard.yml

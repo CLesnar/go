@@ -1,0 +1,21 @@
+description: 'Magic: The Gathering card data with meta data for in play. This augments the card for in play activities.'
+type: object
+required:
+properties:
+  card: 
+    $ref: ./MtgCard.yml
+  is_tapped:
+    description: boolean signaling the card has been tapped this turn within play or battle.
+    type: boolean
+  is_blocker:
+    description: boolean signaling the card is being used this turn as a blocker within play or battle.
+    type: boolean
+  is_attacker:
+    description: boolean signaling the card is being used this turn as an attacker within play or battle.
+    type: boolean
+  power:
+    description: power of attack or defense this turn.
+    type: string
+  life:
+    description: life of this creature this turn.
+    type: string
