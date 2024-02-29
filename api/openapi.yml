@@ -61,3 +61,5 @@ components:
       $ref: ./schemas/magicTheGathering/MtgGameManager.yml
     MtgBattleCard: 
       $ref: ./schemas/magicTheGathering/MtgBattleCard.yml
+    MtgPlayerMeta: 
+      $ref: ./schemas/magicTheGathering/MtgPlayerMeta.yml

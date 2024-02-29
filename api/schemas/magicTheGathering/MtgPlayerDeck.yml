@@ -1,0 +1,20 @@
+description: 'Magic: The Gathering Standard game play meta data'
+type: object
+required:
+  - zones
+  - deck
+  - name
+properties:
+  name:
+    description: Player Name
+    type: string
+  zones:
+    description: 'Cards in each Zone'
+    type: array
+    items:
+      $ref: ./MtgZones.yml
+  deck:
+    description: 'Deck cards List. Rules of the Deck: 60 Card minimum, 4 limit on copies (exception for basic lands).'
+    type: array
+    items:
+      x-go-type: mtg.Card

@@ -76,14 +76,12 @@ type MtgGameManager struct {
 	// GamePhase Magic offically labels its gameplay as "Begin, Main Phase, Combat, Second Main Phase, and End"; some have subphases. For details see: https://en.wikipedia.org/wiki/Magic:_The_Gathering_rules#Gameplay.
 	GamePhase MtgGameManagerGamePhase `json:"game_phase"`
 
-	// InvalidPlayers List of errors from players' decks or other data. Empty list signals all players are valid and ready to play.
-	InvalidPlayers []map[string]interface{} `json:"invalid_players"`
-
 	// PlayerTurn Current player turn. Index of playerBattleFields.
 	PlayerTurn int `json:"player_turn"`
 
 	// Players List Players playing MTG.
-	Players []MtgPlayer `json:"players"`
+	Players     []MtgPlayer     `json:"players"`
+	PlayersMeta []MtgPlayerMeta `json:"players_meta"`
 }
 
 // MtgGameManagerGameFormat Magic offically labels its gameplay as "Begin, Main Phase, Combat, Second Main Phase, and End"; some have subphases. For details see: https://en.wikipedia.org/wiki/Magic:_The_Gathering_rules#Gameplay.
@@ -102,6 +100,36 @@ type MtgPlayer struct {
 
 	// Zones Cards in each Zone
 	Zones []MtgZones `json:"zones"`
+}
+
+// MtgPlayerMeta Magic: The Gathering Standard game play meta data
+type MtgPlayerMeta struct {
+	// CardCount Number of cards in deck
+	CardCount int `json:"card_count"`
+
+	// ColorCount Number of color types in deck
+	ColorCount int `json:"color_count"`
+
+	// Colors Color types in deck listed
+	Colors []string `json:"colors"`
+
+	// CreatureCount Number of creature cards in deck
+	CreatureCount int `json:"creature_count"`
+
+	// Errs List of errors from players' decks or other data. Empty list signals all players are valid and ready to play.
+	Errs []map[string]interface{} `json:"errs"`
+
+	// LandCount Number of land cards in deck
+	LandCount int `json:"land_count"`
+
+	// Meta Map of various stats on the deck.
+	Meta map[string]interface{} `json:"meta"`
+
+	// RepeatedCards Map of cards and number of times repeated in deck
+	RepeatedCards []string `json:"repeated_cards"`
+
+	// SpellCount Number of spell cards in deck
+	SpellCount int `json:"spell_count"`
 }
 
 // MtgZones Magic: The Gathering Standard game play meta data

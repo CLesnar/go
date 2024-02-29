@@ -12,7 +12,7 @@ func main() {
 	fmt.Printf("starting magicTheGathering service...\n")
 	ctx := context.WithValue(context.Background(), server.ServeCtxKeyEnvPort, "MTG_PORT")
 	fmt.Printf("version: %v\n", magicTheGathering.Version()) // TODO replace with struct logger
-	s := WeatherWebAppScope{}
+	s := MtgScope{}
 	errChan := make(chan error)
 	server.Serve(ctx, &s, errChan)
 	fmt.Printf("exiting weatherWebApp service.\n")

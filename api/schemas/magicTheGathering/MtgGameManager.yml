@@ -5,7 +5,7 @@ required:
   - game_phase
   - player_turn
   - game_format
-  - invalid_players
+  - players_meta
 properties:
   players:
     description: 'List Players playing MTG.'
@@ -24,8 +24,7 @@ properties:
     description: 'Magic offically labels its gameplay as "Begin, Main Phase, Combat, Second Main Phase, and End"; some have subphases. For details see: https://en.wikipedia.org/wiki/Magic:_The_Gathering_rules#Gameplay.'
     type: string
     enum: ["Main-Second","End-Step","End-Cleanup"]
-  invalid_players:
-    description: "List of errors from players' decks or other data. Empty list signals all players are valid and ready to play."
+  players_meta:
     type: array
-    items:
-      additionalProperties: {}
+    items: 
+      $ref: ./MtgPlayerMeta.yml

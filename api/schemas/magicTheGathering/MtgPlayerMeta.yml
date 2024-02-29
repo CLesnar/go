@@ -1,0 +1,52 @@
+description: 'Magic: The Gathering Standard game play meta data'
+type: object
+required:
+  - card_count
+  - land_count
+  - creature_count
+  - spell_count
+  - color_count
+  - colors
+  - repeated_cards
+  - meta
+  - errs
+properties:
+  card_count:
+    description: Number of cards in deck
+    type: integer
+    format: int
+  land_count:
+    description: Number of land cards in deck
+    type: integer
+    format: int
+  creature_count:
+    description: Number of creature cards in deck
+    type: integer
+    format: int
+  spell_count:
+    description: Number of spell cards in deck
+    type: integer
+    format: int
+  color_count:
+    description: 'Number of color types in deck'
+    type: integer
+    format: int
+  colors:
+    description: 'Color types in deck listed'
+    type: array
+    items: 
+      type: string
+  repeated_cards:
+    description: 'Map of cards and number of times repeated in deck'
+    type: array
+    items: 
+      type: string
+  meta:
+    description: "Map of various stats on the deck."
+    type: object
+    additionalProperties: {}
+  errs:
+    description: "List of errors from players' decks or other data. Empty list signals all players are valid and ready to play."
+    type: array
+    items:
+      additionalProperties: {}
