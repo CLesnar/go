@@ -9,4 +9,4 @@ Don't put a lot of code in the application directory. If you think the code can 
 It's common to have a small main function that imports and invokes the code from the /internal and /pkg directories and nothing else.
 
 ## Health Check
-All commands have a health check at http://<host>:<port>/health (i.e. http://localhost:8111/health).
+All commands have a health check at `http://<host>:<port>/health` (i.e. http://localhost:8111/health).
