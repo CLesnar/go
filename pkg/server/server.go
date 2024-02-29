@@ -14,7 +14,11 @@ import (
 	"github.com/gorilla/mux"
 )
 
+type ServeCtxKeyType string
+
 const (
+	ServeCtxKeyEnvPort = ServeCtxKeyType("ServeCtxKeyEnvPort")
+
 	DefaultPort = 8080
 )
 
@@ -25,7 +29,12 @@ type Scope interface {
 func Serve(ctx context.Context, s Scope, errChan chan<- error) {
 	r := NewRouter()
 	s.Route(r)
-
+	envPort := "PORT"
+	if portEnvVar := ctx.Value(ServeCtxKeyEnvPort); portEnvVar != nil {
+		if v, ok := portEnvVar.(string); ok {
+			envPort = v
+		}
+	}
 	// CORS
 	headersAllowed := handlers.AllowedHeaders([]string{"Content-Type", "Authorization"}) // Add more headers such as ones defined in datadog logs or similar
 	methodsAllowed := handlers.AllowedMethods([]string{http.MethodDelete, http.MethodGet, http.MethodPost, http.MethodPut})
@@ -34,7 +43,7 @@ func Serve(ctx context.Context, s Scope, errChan chan<- error) {
 	corshandler := cors(r)
 
 	timeout := environment.GetEnvVar("TIMEOUT", "30")
-	port := environment.GetEnvVar("PORT", "8111") // TODO: make variable <NAME>_PORT so multiple services defined in /cmd/ dir can run at the same time.
+	port := environment.GetEnvVar(envPort, "8111")
 	if devenv := environment.GetEnvVar("DEVENV", ""); len(devenv) > 0 {
 		timeout = "500" // increase timeout for debugging
 	}

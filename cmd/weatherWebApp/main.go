@@ -10,7 +10,7 @@ import (
 
 func main() {
 	fmt.Printf("starting weatherWebApp service...\n")
-	ctx := context.Background()
+	ctx := context.WithValue(context.Background(), server.ServeCtxKeyEnvPort, "WEATHER_PORT")
 	fmt.Printf("version: %v\n", weather.Version()) // TODO replace with struct logger
 	s := WeatherWebAppScope{}
 	errChan := make(chan error)

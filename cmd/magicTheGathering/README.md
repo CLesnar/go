@@ -2,7 +2,7 @@
 This service utilizes Magic: The Gathering API to create a web based game. 
 
 ## Magic: The Gathering API Details
-The MTG APIs used relate to card data and set data. The official website for MTG API can be found here: https://magicthegathering.io/#. The offical docs found in linked from above can be found here: https://docs.magicthegathering.io/. And the go SDK can be found here: https://github.com/MagicTheGathering/mtg-sdk-go. 
+The MTG APIs used relate to card data and set data. The official website for MTG API can be found here: https://magicthegathering.io/#. The official docs found in linked from above can be found here: https://docs.magicthegathering.io/. And the go SDK can be found here: https://github.com/MagicTheGathering/mtg-sdk-go. 
 
 The go client is used:
     `go get github.com/MagicTheGathering/mtg-sdk-go`
@@ -21,3 +21,14 @@ Once weatherWebApp is running, then in a browser, navigate to http://localhost:8
 
 ## debug build
 go build -buildvcs=false -o /workspaces/clesnar-go/cmd/weatherWebApp/__debug_bin1800304272 -gcflags all=-N
+
+## Flowcharts
+### Building the Deck
+flowchart TD
+    A[Service] --> |Request|M[MTG Public API]
+    M --> |GET|C[Cards] 
+    M --> |GET|S[Sets] 
+    S --> |Validate|P[Card Pool]
+    C --> |Validate|P
+    UC[Client] --> D[Deck] <--> |Selection|P
+    
