@@ -24,11 +24,13 @@ go build -buildvcs=false -o /workspaces/clesnar-go/cmd/weatherWebApp/__debug_bin
 
 ## Flowcharts
 ### Building the Deck
+```
 flowchart TD
     A[Service] --> |Request|M[MTG Public API]
-    M --> |GET|C[Cards] 
-    M --> |GET|S[Sets] 
-    S --> |Validate|P[Card Pool]
+    M --> |GET|C[Cards]
+    M --> |GET|S[Sets]
+    S --> |Validate|P(Card Pool)
     C --> |Validate|P
-    UC[Client] --> D[Deck] <--> |Selection|P
-    
+    UC[Client] <--> |GET|P
+    UC --> |POST|PD[Player Deck]
+```
