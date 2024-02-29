@@ -23,6 +23,7 @@ Once weatherWebApp is running, then in a browser, navigate to http://localhost:8
 go build -buildvcs=false -o /workspaces/clesnar-go/cmd/weatherWebApp/__debug_bin1800304272 -gcflags all=-N
 
 ## Flowcharts
+Mermaid Diagrams; for details see https://mermaid.js.org/syntax/examples.html#a-commit-flow-diagram or https://mermaid.live/edit.
 ### Building the Deck
 ```mermaid
 flowchart TD
