@@ -24,7 +24,7 @@ go build -buildvcs=false -o /workspaces/clesnar-go/cmd/weatherWebApp/__debug_bin
 
 ## Flowcharts
 ### Building the Deck
-```
+```mermaid
 flowchart TD
     A[Service] --> |Request|M[MTG Public API]
     M --> |GET|C[Cards]
