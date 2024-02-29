@@ -3,7 +3,8 @@ type: object
 required:
 properties:
   card: 
-    $ref: ./MtgCard.yml
+    description: The MTG card augmented for battle.
+    x-go-type: mtg.Card
   is_tapped:
     description: boolean signaling the card has been tapped this turn within play or battle.
     type: boolean
