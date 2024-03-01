@@ -20,5 +20,6 @@ func GetMTG() {
 func GetSet(name string) ([]*mtg.Set, error) {
 	q := mtg.NewSetQuery()
 	q.Where(mtg.SetName, name) // "murders at karlov manor")
-	return q.All()
+	sets, _, err := q.PageS(0, 10)
+	return sets, err
 }
