@@ -5,13 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "weatherApp",
+            "name": "Mtg",
             "type": "go",
             "request": "launch",
             // "mode": "auto",
             "mode": "debug",
             // "program": "${fileDirname}",
-            "program": "${workspaceFolder}/cmd/weatherWebApp/",
+            "program": "${workspaceFolder}/cmd/magicTheGathering/",
             "envFile":"${workspaceFolder}/.devcontainer/.env",
             "env":{
                 // set key value environment vars here

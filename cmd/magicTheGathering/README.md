@@ -35,3 +35,40 @@ flowchart TD
     UC[Client] <--> |GET|P
     UC --> |POST|PD[Player Deck]
 ```
+### Main Thread Operations Sequence Diagram
+```mermaid
+sequenceDiagram
+    participant db as Storage
+    participant gm as Game Manager
+    participant p1 as Player 1
+    participant p2 as Player 2
+
+    Note over db,p2: Setup Player Decks
+    Note over db,p2: Game Manager allows asynchronous player input in building Player Decks
+
+    p1 ->> gm: Build Deck
+    gm ->> db: validate & store p1 update
+    gm ->> p1: Game State
+    p2 ->> gm: Build Deck
+    gm ->> db: validate & store p1 update
+    gm ->> p2: Game State
+
+    Note over db,p2: When Player Decks are valid Game can commence
+    Note over db,p2: Game Manager waits for player input in turn based game
+
+    gm ->> p1: Game State
+    gm ->> p2: Game State
+
+    p1 ->> gm: action
+    gm ->> db: is player's turn, validate action
+    gm ->> p1: Game State 
+    gm ->> p2: Game State 
+    
+    p2 ->> gm: action
+    gm ->> db: is player's turn, validate action
+    gm ->> p2: Game State 
+    gm ->> p1: Game State 
+    
+    Note over db,p2: Iterate until Game is complete
+
+```

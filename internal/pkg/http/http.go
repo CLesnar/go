@@ -128,3 +128,17 @@ func RespondError(w http.ResponseWriter, statuscode int, err error) {
 	w.Write([]byte(err.Error())) // nolint
 	w.WriteHeader(statuscode)
 }
+
+func RespondJson(w http.ResponseWriter, payload interface{}) {
+	w.Header().Set("Content-Type", "application/json")
+	payloadJson, err := json.Marshal(payload)
+	if err != nil {
+		RespondError(w, http.StatusInternalServerError, err)
+		return
+	}
+	if _, err := w.Write([]byte(payloadJson)); err != nil {
+		RespondError(w, http.StatusInternalServerError, err)
+		return
+	}
+	w.WriteHeader(http.StatusOK)
+}

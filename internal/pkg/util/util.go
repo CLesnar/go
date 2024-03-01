@@ -1,6 +1,7 @@
 package util
 
 import (
+	"context"
 	"fmt"
 	"reflect"
 	"strings"
@@ -59,10 +60,6 @@ func FindFieldTag(model interface{}, field interface{}, tagsKey string) (string,
 		}
 	}
 	return "", fmt.Errorf("failed to get tag for field '%T:%+v' from struct '%T:%+v'", field, field, model, model)
-}
-
-func Reference[T any](v T) *T {
-	return &v
 }
 
 func Contains[T any](list []T, item T, comparator func(a T, b T) int) bool {
@@ -144,5 +141,11 @@ func StringifyUnknown(value interface{}, typeValueFormatOverrideFunc func(interf
 			}
 		}
 		return elem
+	}
+}
+
+func Recover(ctx context.Context, label string) {
+	if r := recover(); r != nil {
+		fmt.Printf("%s: %v", label, r)
 	}
 }
